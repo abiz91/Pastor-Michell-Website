@@ -11,9 +11,8 @@ ALLOWED_HOSTS = [
     "127.0.0.1",
     "localhost",
     ".vercel.app",
-    "manifestdestinyministries.org",
-    "www.manifestdestinyministries.org",
-    "marcmind.com",
+    "matriarchmantle.com",
+    "www.matriarchmantle.com",
 ]
 ALLOWED_HOSTS += [h.strip() for h in os.environ.get("ALLOWED_HOSTS", "").split(",") if h.strip()]
 if os.environ.get("VERCEL_URL"):
@@ -56,9 +55,8 @@ SITE_URL = os.environ.get(
     "http://127.0.0.1:8000"
 )
 CSRF_TRUSTED_ORIGINS = [
-    "https://marcmind.com",
-    "https://manifestdestinyministries.org",
-    "https://www.manifestdestinyministries.org",
+    "https://matriarchmantle.com",
+    "https://www.matriarchmantle.com",
     "https://*.vercel.app",
 ]
 
