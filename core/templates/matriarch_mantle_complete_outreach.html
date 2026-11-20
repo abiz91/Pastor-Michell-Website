@@ -1,0 +1,1867 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Matriarch Mantle | Ministry, Global Initiatives & Redeeming the Bloodline</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Italianno&display=swap" rel="stylesheet">
+
+     <style>
+        :root {
+            --black:#65050F;
+            --black-soft:#4B030B;
+            --ink:#2B1014;
+            --white:#fffaf7;
+            --cream:#f6efe8;
+            --coral:#65050F;
+            --coral-dark:#4B030B;
+            --gold:#c9a45b;
+            --gold-light:#e4c47b;
+            --line:rgba(25,21,21,.14);
+            --shadow:0 24px 70px rgba(0,0,0,.16);
+            --serif:"Cormorant Garamond",Georgia,serif;
+            --sans:"Inter",Arial,sans-serif;
+            --script:"Italianno",cursive;
+        }
+
+        *{box-sizing:border-box}
+        html{scroll-behavior:smooth}
+        .welcome-banner{
+            width:100%;
+            margin-top:88px;
+            line-height:0;
+            overflow:hidden;
+        }
+        .welcome-banner img{
+            display:block;
+            width:100%;
+            height:auto;
+            object-fit:contain;
+        }
+        body{
+            margin:0;
+            color:var(--ink);
+            background:var(--white);
+            font-family:var(--sans);
+            line-height:1.7;
+            overflow-x:hidden
+        }
+        img{display:block;width:100%}
+        a{color:inherit;text-decoration:none}
+        button{font:inherit}
+        .container{width:min(1180px,calc(100% - 48px));margin-inline:auto}
+       
+        .progress{position:fixed;inset:0 0 auto;height:3px;z-index:2000;background:transparent}
+        .progress span{display:block;width:0;height:100%;background:var(--coral)}
+
+        /* HEADER */
+        .header{
+            background:black;
+            position:fixed;top:0;left:0;width:100%;z-index:1000;
+            transition:.3s ease
+        }
+        .header.scrolled{
+            background:black;
+            backdrop-filter:blur(16px);
+            box-shadow:0 10px 35px rgba(0,0,0,.18)
+        }
+        .header-inner{
+            min-height:88px;
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            gap:30px
+        }
+        .brand{display:inline-flex;align-items:center;gap:12px;color:#fff}
+        .brand-logo{
+            width:clamp(190px,22vw,270px);height:auto;flex:0 1 auto;
+            border:0;border-radius:0;display:block;overflow:visible;background:transparent
+        }
+        .brand-logo img{width:100%;height:auto;max-height:78px;object-fit:contain;display:block}
+        .brand-text{display:none}
+        @media(max-width:700px){.brand-logo{width:clamp(145px,44vw,210px)}.brand-logo img{max-height:62px}}
+        .nav{display:flex;align-items:center;gap:22px;color:#fff}
+        .nav a{
+            font-size:11px;text-transform:uppercase;letter-spacing:.12em;
+            opacity:.9;transition:.25s
+        }
+        .nav a:hover{color:var(--gold-light);opacity:1}
+        .nav-button{
+            padding:11px 16px;border:1px solid rgba(255,255,255,.55);
+            border-radius:999px
+        }
+        .menu-toggle{
+            display:none;border:0;background:transparent;color:#fff;padding:8px;cursor:pointer
+        }
+        .menu-toggle span{
+            display:block;width:26px;height:2px;background:currentColor;margin:5px
+        }
+
+        /* USER */
+        .user-area{position:relative}
+        .user-button{
+            display:flex;align-items:center;gap:9px;border:1px solid rgba(255,255,255,.35);
+            background:transparent;color:#fff;border-radius:999px;padding:7px 12px;cursor:pointer
+        }
+        .user-avatar{
+            width:30px;height:30px;border-radius:50%;display:grid;place-items:center;
+            background:var(--gold);color:#320208;font-size:11px;font-weight:700
+        }
+        .user-menu{
+            display:none;position:absolute;right:0;top:48px;width:245px;
+            background:#fff;color:var(--ink);padding:18px;border-radius:12px;
+            box-shadow:var(--shadow);border:1px solid var(--line)
+        }
+        .user-menu.open{display:block}
+        .user-menu strong{display:block;font-family:var(--serif);font-size:22px}
+        .user-menu small{display:block;color:#777;margin-bottom:14px}
+        .user-menu a,.user-menu button{
+            display:block;width:100%;text-align:left;padding:10px 5px;
+            border:0;background:none;cursor:pointer;color:var(--ink)
+        }
+        .user-menu a:hover,.user-menu button:hover{color:var(--coral-dark)}
+
+        /* GENERAL */
+        .section{padding:120px 0}
+        .section-meta{
+            display:flex;justify-content:space-between;gap:30px;
+            padding-bottom:18px;border-bottom:1px solid var(--line);margin-bottom:65px
+        }
+        .section-meta span,.section-meta b,.section-label{
+            font-size:10px;letter-spacing:.18em;text-transform:uppercase
+        }
+        .section-meta span{color:#777}
+        .section-meta b{color:var(--coral-dark);font-weight:700}
+        .section-label{color:var(--coral-dark);margin-bottom:18px;font-weight:700}
+        h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:.98;margin:0}
+        h1{font-size:clamp(58px,7vw,104px);letter-spacing:-.035em}
+        h1 span,h1 em,h2 em{color:var(--coral);font-style:italic}
+        h2{font-size:clamp(45px,5vw,74px);letter-spacing:-.025em}
+        h3{font-size:32px}
+        .eyebrow{
+            margin:0 0 15px;text-transform:uppercase;letter-spacing:.18em;
+            font-size:11px;font-weight:700;color:var(--gold-light);
+            display:flex;align-items:center;gap:10px
+        }
+        .eyebrow span{width:34px;height:1px;background:var(--gold-light);display:inline-block}
+        .btn{
+            display:inline-flex;align-items:center;justify-content:center;gap:14px;
+            min-height:50px;padding:0 22px;border-radius:999px;border:1px solid transparent;
+            text-transform:uppercase;letter-spacing:.1em;font-size:11px;font-weight:700;
+            transition:.25s
+        }
+        .btn:hover{transform:translateY(-3px);box-shadow:0 12px 30px rgba(0,0,0,.15)}
+        .btn-primary{background:var(--coral);color:#fff}
+        .btn-primary:hover{background:var(--coral-dark)}
+        .btn-outline-light{color:#fff;border-color:rgba(255,255,255,.45)}
+        .btn-outline-light:hover{border-color:#fff;background:rgba(255,255,255,.08)}
+        .btn-dark{background:var(--black);color:#fff}
+        .hero-actions{display:flex;gap:13px;flex-wrap:wrap}
+
+        /* HERO */
+        .hero{
+            min-height:820px;position:relative;display:grid;align-items:center;
+            background:linear-gradient(135deg,#320208 0%,#4B030B 54%,#65050F 100%);
+            color:#fff;isolation:isolate;overflow:hidden
+        }
+        .hero-pattern{
+            position:absolute;inset:0;z-index:-2;
+            background:
+                linear-gradient(90deg,rgba(0,0,0,.82),rgba(0,0,0,.28)),
+                url("{% static 'images/welcome1.png' %}") center/cover no-repeat;
+            opacity:.38
+        }
+        .hero-glow{position:absolute;width:520px;height:520px;border-radius:50%;filter:blur(90px);z-index:-1;opacity:.24}
+        .hero-glow-a{background:var(--coral);right:-160px;top:80px}
+        .hero-glow-b{background:var(--gold);left:-260px;bottom:-220px}
+        .hero-grid{
+            display:grid;grid-template-columns:.9fr 1.1fr;gap:70px;align-items:center;
+            padding:145px 0 100px
+        }
+        .hero-lead{max-width:590px;color:rgba(255,255,255,.78);font-size:17px;margin:30px 0}
+        .hero-motto{margin-top:44px;max-width:510px;font:italic 22px/1.25 var(--serif);color:rgba(255,255,255,.86)}
+        .hero-motto span{color:var(--coral);font-size:48px;vertical-align:-13px;margin-right:5px}
+        .hero-visual{position:relative}
+        .hero-slideshow{
+            position:relative;min-height:560px;border:1px solid rgba(255,255,255,.22);
+            background:#111;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.35)
+        }
+        .hero-slides{position:absolute;inset:0}
+        .hero-slide{
+            position:absolute;inset:0;margin:0;opacity:0;visibility:hidden;
+            transform:scale(1.035);transition:opacity .85s ease,transform 6.5s ease
+        }
+        .hero-slide.is-active{opacity:1;visibility:visible;transform:scale(1)}
+        .hero-slide::after{
+            content:"";position:absolute;inset:0;
+            background:linear-gradient(180deg,rgba(0,0,0,.02) 30%,rgba(0,0,0,.84) 100%)
+        }
+        .hero-slide img{width:100%;height:100%;object-fit:cover}
+        .hero-slide figcaption{
+            position:absolute;z-index:2;left:30px;right:30px;bottom:52px;
+            display:flex;align-items:center;gap:14px;color:#fff
+        }
+        .hero-slide figcaption span{
+            display:grid;place-items:center;width:34px;height:34px;
+            border:1px solid rgba(255,255,255,.45);border-radius:50%;
+            color:var(--gold-light);font:700 10px var(--sans)
+        }
+        .hero-slide figcaption strong{font:500 25px/1.1 var(--serif)}
+        .hero-control{
+            position:absolute;z-index:5;top:50%;width:44px;height:44px;
+            border:1px solid rgba(255,255,255,.35);border-radius:50%;
+            background:rgba(9,8,8,.38);color:#fff;font:400 32px/1 var(--sans);
+            transform:translateY(-50%);cursor:pointer
+        }
+        .hero-prev{left:18px}.hero-next{right:18px}
+        .hero-dot{
+            width:28px;height:3px;padding:0;border:0;background:rgba(255,255,255,.38);
+            cursor:pointer
+        }
+        .hero-slide-nav{
+            position:absolute;z-index:6;left:50%;bottom:18px;display:flex;gap:7px;
+            transform:translateX(-50%)
+        }
+        .hero-dot.is-active{width:48px;background:var(--gold-light)}
+        .hero-progress{
+            position:absolute;z-index:7;left:0;right:0;bottom:0;height:3px;
+            background:rgba(255,255,255,.15)
+        }
+        .hero-progress span{display:block;width:0;height:100%;background:var(--coral)}
+        .hero-badge{
+            position:absolute;right:-35px;bottom:-38px;width:135px;height:135px;border-radius:50%;
+            background:#65050F;border:8px solid var(--coral);display:grid;place-items:center;
+            box-shadow:0 20px 45px rgba(0,0,0,.3)
+        }
+        .hero-badge img{width:75px;height:75px;object-fit:contain}
+        .scroll-cue{
+            position:absolute;bottom:24px;left:50%;transform:translateX(-50%);
+            font-size:10px;text-transform:uppercase;letter-spacing:.2em;color:rgba(255,255,255,.65)
+        }
+
+        /* ABOUT */
+        .about{background:var(--cream)}
+        .split-heading{display:grid;grid-template-columns:1fr 1fr;gap:90px;align-items:end}
+        .body-copy{max-width:550px}.body-copy p{color:#615a56}
+        .lead{font:500 22px/1.4 var(--serif);color:var(--ink)!important}
+        .gold-rule{width:75px;height:2px;background:var(--gold);margin-top:28px}
+        .feature-image{margin-top:75px;position:relative}
+        .feature-image img{max-height:560px;object-fit:cover;border:1px solid rgba(0,0,0,.18)}
+        .feature-label{
+            position:absolute;left:30px;bottom:30px;display:flex;align-items:center;gap:18px;
+            background:rgba(9,8,8,.92);color:#fff;padding:15px 20px;border-left:3px solid var(--coral)
+        }
+        .feature-label strong{font:500 31px var(--serif);color:var(--gold-light)}
+        .feature-label span{text-transform:uppercase;letter-spacing:.12em;font-size:10px}
+
+        /* MANTLE */
+        .mantle{position:relative;background:var(--black);color:#fff;overflow:hidden}
+        .mantle-grid{display:grid;grid-template-columns:1fr .85fr;gap:80px;align-items:center}
+        .mantle-copy>p{color:rgba(255,255,255,.68);max-width:590px}
+        .mantle-points{margin-top:40px;border-top:1px solid rgba(255,255,255,.15)}
+        .mantle-points div{
+            display:grid;grid-template-columns:50px 1fr auto;align-items:center;gap:16px;
+            padding:18px 0;border-bottom:1px solid rgba(255,255,255,.15)
+        }
+        .mantle-points b{color:var(--coral);font-size:11px}
+        .mantle-points span{font:500 27px var(--serif)}
+        .mantle-points small{color:#888}
+        .scripture-card{background:#f9f5ef;color:var(--ink);box-shadow:var(--shadow)}
+        .scripture-image{padding:14px 14px 0}.scripture-image img{aspect-ratio:16/9;object-fit:cover}
+        .scripture-content{padding:34px 38px 40px}
+        .card-kicker{color:var(--coral-dark);font-size:10px;font-weight:700;letter-spacing:.17em;text-transform:uppercase}
+        blockquote{margin:20px 0 12px;font:italic 25px/1.25 var(--serif)}
+        cite{font:600 11px var(--sans);color:#777;letter-spacing:.13em;text-transform:uppercase}
+
+        /* SCRIPTURE */
+        .scripture{background:#fff}
+        .section-heading{display:flex;justify-content:space-between;gap:50px;align-items:end;margin-bottom:60px}
+        .section-heading>p{max-width:400px;color:#6c6561;margin:0}
+        .pillar-grid{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--line)}
+        .pillar{
+            display:grid;grid-template-columns:60px 1fr;gap:20px;padding:36px 28px 36px 0;
+            border-bottom:1px solid var(--line)
+        }
+        .pillar:nth-child(even){padding-left:28px;border-left:1px solid var(--line)}
+        .pillar>span{color:var(--coral);font-size:11px;font-weight:700}
+        .pillar h3{font-size:31px;margin-bottom:8px}
+        .pillar p{color:#6b6560;margin:0 0 9px;font-size:14px}
+        .pillar b{font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--coral-dark)}
+        .scripture-banner{
+            margin-top:55px;display:grid;grid-template-columns:1.5fr 1fr;
+            background:var(--black);color:#fff;overflow:hidden
+        }
+        .scripture-banner img{height:100%;min-height:220px;object-fit:cover}
+        .scripture-banner div{padding:45px;align-self:center}
+        .scripture-banner span{color:var(--gold-light);font-size:10px;letter-spacing:.17em;font-weight:700}
+        .scripture-banner h3{font-size:42px;margin:10px 0}
+        .scripture-banner p{color:#aaa;margin:0}
+
+        /* MOTTO */
+        .motto{padding:120px 0;background:linear-gradient(130deg,#151010,#090808);color:#fff;text-align:center}
+        .motto-inner{max-width:860px;margin:auto}
+        .motto-logo{width:90px;height:90px;border-radius:50%;background:#65050F;padding:12px;margin:0 auto 30px}
+        .motto-logo img{height:100%;object-fit:contain}
+        .motto p:last-child{max-width:700px;margin:25px auto 0;color:#aaa}
+
+        /* FOUNDER */
+        .founder{background:linear-gradient(135deg,#fff,#f3e8df)}
+        .founder-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:100px;align-items:center}
+        .founder-visual{position:relative}
+        .portrait{background:#fff;padding:14px;border:1px solid #ddd1c6;box-shadow:var(--shadow);transform:rotate(-1deg)}
+        .portrait img{aspect-ratio:4/5;object-fit:cover;object-position:center top}
+        .portrait-tag{
+            position:absolute;left:-25px;bottom:-25px;display:flex;align-items:center;gap:12px;
+            background:var(--black);color:#fff;padding:10px 16px 10px 10px
+        }
+        .portrait-tag img{width:54px;height:54px;object-fit:contain;background:#fff;border-radius:50%;padding:6px}
+        .portrait-tag span{text-transform:uppercase;font-size:10px;letter-spacing:.14em}
+        .founder-copy>p{color:#665f5a;max-width:590px}
+
+        /* GLOBAL INITIATIVES */
+        .global-initiatives{background:var(--cream);position:relative;overflow:hidden}
+        .global-intro{max-width:760px;margin-bottom:65px}
+        .global-intro h2{margin-bottom:25px}
+        .global-intro>p:not(.section-label):not(.global-tagline){color:#665f5a;font-size:16px;max-width:680px}
+        .global-tagline{font:italic 24px/1.3 var(--serif);color:var(--coral-dark);margin-top:22px}
+        .global-values{
+            display:grid;grid-template-columns:repeat(6,1fr);
+            border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-bottom:75px
+        }
+        .global-value{padding:25px 18px;text-align:center;border-right:1px solid var(--line)}
+        .global-value:last-child{border-right:0}
+        .global-value span{display:block;color:var(--coral);font-size:10px;font-weight:700;letter-spacing:.14em}
+        .global-value strong{display:block;margin-top:7px;font:500 20px var(--serif)}
+        .global-countries{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+        .country-card{
+            position:relative;background:#fff;border:1px solid var(--line);overflow:hidden;
+            box-shadow:0 12px 35px rgba(0,0,0,.07);transition:.35s
+        }
+        .country-card:hover{transform:translateY(-8px);box-shadow:var(--shadow)}
+        .country-image{height:300px;position:relative;overflow:hidden;background:#111}
+        .country-image img{height:100%;object-fit:cover;transition:transform .6s}
+        .country-card:hover .country-image img{transform:scale(1.05)}
+        .country-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.05) 35%,rgba(0,0,0,.78) 100%)}
+        .country-name{position:absolute;left:25px;bottom:22px;color:#fff}
+        .country-name small{display:block;color:var(--gold-light);font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase}
+        .country-name h3{font-size:38px}
+        .country-content{padding:28px 28px 32px}
+        .country-content h4{font:500 24px var(--serif);margin:0 0 10px}
+        .country-content p{margin:0;color:#6b6560;font-size:14px}
+        .country-focus{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+        .country-focus span{
+            padding:7px 10px;background:var(--cream);color:var(--coral-dark);
+            font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase
+        }
+
+        /* IMPACT */
+        .impact-areas{background:#fff}
+        .impact-intro{max-width:650px;margin-bottom:55px}
+        .impact-intro p:not(.section-label){color:#6c6561}
+        .impact-grid-new{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+        .impact-card-new{
+            position:relative;padding:38px;min-height:280px;background:var(--cream);
+            border:1px solid var(--line);transition:.3s
+        }
+        .impact-card-new:hover{transform:translateY(-7px);box-shadow:var(--shadow)}
+        .impact-card-new:nth-child(2){background:var(--black);color:#fff}
+        .impact-card-new:nth-child(2) p{color:#aaa}
+        .impact-number{color:var(--coral);font-size:11px;font-weight:700;letter-spacing:.15em}
+        .impact-card-new h3{font-size:34px;margin:55px 0 12px}
+        .impact-card-new p{margin:0;color:#6b6560;font-size:14px}
+
+        /* GALLERY */
+        .gallery{background:#fff}
+        .gallery-grid{display:grid;grid-template-columns:1.25fr .75fr .75fr;gap:16px}
+        .gallery-item{margin:0;position:relative;overflow:hidden;min-height:270px;background:#111;cursor:pointer}
+        .gallery-item img{height:100%;min-height:270px;object-fit:cover;transition:transform .6s}
+        .gallery-item:hover img{transform:scale(1.05)}
+        .gallery-large{grid-row:span 2}
+        .gallery-large img{min-height:556px}
+        .gallery-item figcaption{
+            position:absolute;left:0;right:0;bottom:0;padding:20px;color:#fff;
+            background:linear-gradient(transparent,rgba(0,0,0,.82));font:500 22px var(--serif)
+        }
+
+        /* PRAYER */
+        .prayer{background:var(--black);color:#fff}
+        .prayer-grid{display:grid;grid-template-columns:1fr 1fr;align-items:stretch}
+        .prayer-art{min-height:560px}
+        .prayer-art img{height:100%;object-fit:cover}
+        .prayer-card{background:var(--coral);padding:75px;display:flex;flex-direction:column;justify-content:center}
+        .prayer-card .section-label{color:#fff;opacity:.8}
+        .prayer-card h2{font-size:clamp(48px,5vw,72px)}
+        .prayer-card h2 em{color:#fff}
+        .prayer-card>p{color:rgba(255,255,255,.84);max-width:540px}
+        .prayer-card .btn{align-self:flex-start;background:var(--black)}
+
+        /* PARTNERSHIP */
+        .partnership{
+            background:linear-gradient(135deg,rgba(9,8,8,.98),rgba(25,21,21,.96));
+            color:#fff;position:relative;overflow:hidden
+        }
+        .partnership::before{
+            content:"";position:absolute;width:500px;height:500px;border-radius:50%;
+            background:var(--coral);opacity:.08;filter:blur(90px);right:-180px;top:-180px
+        }
+        .partnership-grid{position:relative;display:grid;grid-template-columns:1.1fr .9fr;gap:80px;align-items:center}
+        .partnership-copy .section-label{color:var(--gold-light)}
+        .partnership-copy h2{color:#fff;max-width:700px}
+        .partnership-copy h2 em{color:var(--coral)}
+        .partnership-copy>p{color:rgba(255,255,255,.7);max-width:620px;margin:25px 0}
+        .partnership-list{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:35px}
+        .partnership-item{padding:18px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.035)}
+        .partnership-item span{display:block;color:var(--gold-light);font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+        .partnership-item strong{display:block;margin-top:6px;font:500 19px var(--serif)}
+        .partnership-card{background:var(--cream);color:var(--ink);padding:42px;box-shadow:var(--shadow)}
+        .partnership-card .card-kicker{color:var(--coral-dark)}
+        .partnership-card h3{font-size:40px;margin:12px 0 18px}
+        .partnership-card p{color:#6b6560;font-size:14px}
+
+        /* FEATURED BOOK — REDEEMING THE BLOODLINE */
+        .featured-book{background:linear-gradient(135deg,#65050F 0%,#4B030B 60%,#320208 100%);color:#fff;position:relative;overflow:hidden}
+        .featured-book:before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at 90% 10%,rgba(201,164,91,.2),transparent 34%)}
+        .featured-book .container{position:relative;z-index:1}
+        .book-intro{max-width:800px;margin-bottom:38px}
+        .book-intro .section-label{color:var(--gold-light)}
+        .book-intro h2{max-width:850px}
+        .book-intro h2 em{color:var(--gold-light)}
+        .book-intro p{max-width:720px;color:rgba(255,255,255,.82)}
+        .book-promo-frame{max-width:690px;margin:0 auto 34px;background:#fff;border:1px solid rgba(228,196,123,.75);padding:10px;box-shadow:0 25px 70px rgba(0,0,0,.28)}
+        .book-promo-frame img{width:100%;height:auto;object-fit:contain}
+        .book-actions{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-top:28px}
+        .btn-gold{background:var(--gold-light);color:#320208;border-color:var(--gold-light)}
+        .btn-gold:hover{background:#f0d99c;border-color:#f0d99c}
+        .book-action-note{text-align:center;color:rgba(255,255,255,.72);font-size:13px;max-width:720px;margin:20px auto 0}
+        .book-action-note a{color:var(--gold-light);text-decoration:underline;text-underline-offset:3px}
+
+        /* CONTACT */
+        .contact{background:#f8f4ef}
+        .contact-grid{display:grid;grid-template-columns:1fr .8fr;gap:90px;align-items:center}
+        .contact-copy>p{max-width:560px;color:#665f5a}
+        .contact-art{background:#fff;border:1px solid #ddd2c8;padding:10px;box-shadow:var(--shadow)}
+        .contact-art img{aspect-ratio:1/1;object-fit:cover}
+        .contact-details{
+            margin-top:65px;padding-top:25px;border-top:1px solid var(--line);
+            display:grid;grid-template-columns:1fr 1fr 1.4fr;gap:30px
+        }
+        .contact-details a,.contact-details div{font:500 18px var(--serif)}
+        .contact-details small{
+            display:block;color:var(--coral-dark);font:700 9px var(--sans);
+            text-transform:uppercase;letter-spacing:.16em;margin-bottom:7px
+        }
+
+        /* FOOTER */
+        .footer{background:black;color:#fff;padding:34px 0}
+          
+        .footer-inner{display:flex;align-items:center;justify-content:space-between;gap:25px;flex-wrap:wrap}
+        .footer p{color:#85807d;font-size:11px;margin:0}
+        .back-to-top{
+            position:fixed;right:20px;bottom:20px;width:46px;height:46px;border-radius:50%;
+            border:1px solid #ddd;background:#fff;color:var(--black);
+            box-shadow:0 8px 25px rgba(0,0,0,.15);opacity:0;pointer-events:none;transition:.25s;z-index:900
+        }
+        .back-to-top.visible{opacity:1;pointer-events:auto}
+
+        /* LIGHTBOX */
+        .lightbox{
+            display:none;position:fixed;inset:0;background:rgba(0,0,0,.94);
+            z-index:3000;align-items:center;justify-content:center;padding:30px
+        }
+        .lightbox.open{display:flex}
+        .lightbox img{max-width:90%;max-height:85vh;width:auto;border-radius:6px}
+        .close-lightbox{
+            position:absolute;top:25px;right:35px;color:#fff;font-size:38px;cursor:pointer
+        }
+
+
+        /* LIFETIME ACHIEVEMENT FEATURE */
+        .legacy-story{margin:0 0 68px;padding:clamp(26px,5vw,58px);background:linear-gradient(145deg,#fbf6ef,#f2e8dc);border:1px solid rgba(101,5,15,.16);box-shadow:0 18px 50px rgba(43,16,20,.07)}
+        .legacy-story .legacy-kicker{display:inline-block;margin-bottom:15px;color:var(--coral-dark);font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase}
+        .legacy-story h3{font-size:clamp(30px,3.5vw,46px);line-height:1.08;color:var(--black);margin:0 0 22px}
+        .legacy-verse{margin:0 0 30px;padding:20px 25px;border-left:3px solid var(--gold);background:rgba(255,255,255,.72);font:italic 22px/1.35 var(--serif);color:var(--ink)}
+        .legacy-verse cite{display:block;margin-top:10px;font:700 10px var(--sans);letter-spacing:.13em;text-transform:uppercase;color:var(--coral-dark)}
+        .legacy-story .legacy-intro{font:500 19px/1.55 var(--serif);color:var(--ink)}
+        .legacy-story p{color:#5f5752;font-size:14px;line-height:1.85;margin:0 0 16px}
+        .legacy-story h4{font:600 29px/1.15 var(--serif);color:var(--coral-dark);margin:38px 0 14px;padding-top:24px;border-top:1px solid rgba(101,5,15,.15)}
+        .legacy-story .legacy-closing{margin:28px 0 0;padding:25px;background:var(--black);color:#fff;font:italic 22px/1.4 var(--serif);text-align:center}
+        .legacy-story .legacy-closing cite{display:block;margin-top:10px;color:var(--gold-light)}
+        .legacy-story .legacy-motto{margin-top:20px;color:var(--coral-dark);font-size:10px;font-weight:700;letter-spacing:.15em;text-align:center;text-transform:uppercase}
+        .legacy-story .legacy-thread{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin:25px 0 8px}
+        .legacy-story .legacy-thread span{padding:12px 8px;background:#fff;border:1px solid rgba(101,5,15,.12);text-align:center;color:var(--coral-dark);font:600 15px var(--serif)}
+        @media(max-width:760px){.legacy-story{margin-bottom:48px}.legacy-story .legacy-thread{grid-template-columns:1fr 1fr}.legacy-verse{font-size:19px;padding:17px}}
+
+        /* MOBILE */
+        @media(max-width:980px){
+            .nav{gap:15px}
+            .nav a{font-size:10px}
+            .hero-grid,.mantle-grid,.founder-grid,.contact-grid,.partnership-grid{grid-template-columns:1fr}
+            .hero-grid{padding-top:130px}
+            .hero-copy{order:1}
+            .hero-visual{order:2;max-width:760px;margin:0 auto;width:100%}
+            .mantle-grid,.founder-grid,.partnership-grid{gap:55px}
+            .global-countries,.impact-grid-new{grid-template-columns:1fr 1fr}
+            .global-values{grid-template-columns:repeat(3,1fr)}
+            .global-value:nth-child(3){border-right:0}
+            .global-value:nth-child(-n+3){border-bottom:1px solid var(--line)}
+            .contact-art{max-width:600px}
+        }
+
+        @media(max-width:760px){
+            .container{width:min(100% - 30px,600px)}
+            .header-inner{min-height:76px}
+            .menu-toggle{display:block}
+            .nav{
+                position:absolute;top:76px;left:15px;right:15px;display:none;
+                flex-direction:column;align-items:stretch;background:rgba(9,8,8,.97);
+                padding:18px;border:1px solid rgba(255,255,255,.12);border-radius:12px
+            }
+            .nav.open{display:flex}
+            .nav a{padding:10px 4px}
+            .nav-button{text-align:center}
+            .user-area{display:none}
+            .section{padding:82px 0}
+            .hero{min-height:780px}
+            .hero-grid{gap:42px;padding:120px 0 80px}
+            .hero-slideshow{min-height:390px}
+            .hero-badge{width:100px;height:100px;right:-10px;bottom:-28px;border-width:5px}
+            .hero-badge img{width:60px;height:60px}
+            .split-heading,.section-heading{display:grid;grid-template-columns:1fr;gap:35px}
+            .section-meta{display:block}
+            .section-meta b{display:block;margin-top:8px}
+            .pillar-grid{grid-template-columns:1fr}
+            .pillar:nth-child(even){padding-left:0;border-left:0}
+            .scripture-banner{grid-template-columns:1fr}
+            .gallery-grid{grid-template-columns:1fr}
+            .gallery-large{grid-row:auto}
+            .gallery-large img{min-height:270px}
+            .prayer-grid{grid-template-columns:1fr}
+            .prayer-art{min-height:350px}
+            .prayer-card{padding:45px 28px}
+            .global-values{grid-template-columns:1fr 1fr}
+            .global-value:nth-child(odd){border-right:1px solid var(--line)}
+            .global-value:nth-child(even){border-right:0}
+            .global-countries,.impact-grid-new,.partnership-list{grid-template-columns:1fr}
+            .partnership-card{padding:30px}
+            .contact-details{grid-template-columns:1fr}
+            .portrait-tag{left:0}
+        }
+
+        @media(max-width:640px){
+            .book-promo-frame{padding:5px;margin-bottom:24px}
+            .book-actions{align-items:stretch;flex-direction:column}
+            .book-actions .btn{width:100%}
+            .featured-book.section{padding:84px 0}
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="progress"><span id="progressBar"></span></div>
+
+<header class="header" id="siteHeader">
+    <div class="container header-inner">
+
+        <a href="#home" class="brand">
+            <div class="brand-logo">
+                <img src="{% static 'core/images/logo.png' %}" alt="Matriarch Mantle — Prophetic Intercessory Prayer Ministry">
+            </div>
+        </a>
+
+        <button class="menu-toggle" id="menuToggle" aria-label="Open navigation">
+            <span></span><span></span><span></span>
+        </button>
+
+        <nav class="nav" id="mainNav">
+            <a href="#about">About</a>
+            <a href="#mantle">The Mantle</a>
+            <a href="#scripture">Scripture</a>
+            <a href="#founder">Founder</a>
+            <a href="#global-initiatives">Global Initiatives</a>
+            <a href="#impact">Impact</a>
+            <a href="#gallery">Gallery</a>
+            <a href="#featured-book">Featured Book</a>
+            <a href="#contact">Connect</a>
+
+            {% if request.user.is_authenticated %}
+                <div class="user-area">
+                    <button class="user-button" id="userButton">
+                        <span class="user-avatar">
+                            {% if request.user.first_name and request.user.last_name %}
+                                {{ request.user.first_name|first|upper }}{{ request.user.last_name|first|upper }}
+                            {% else %}
+                                {{ request.user.username|first|upper }}{{ request.user.username|last|upper }}
+                            {% endif %}
+                        </span>
+                        <span>Account⌄</span>
+                    </button>
+
+                    <div class="user-menu" id="userMenu">
+                        <strong>
+                            {% if request.user.first_name %}
+                                {{ request.user.first_name }}
+                            {% else %}
+                                {{ request.user.username }}
+                            {% endif %}
+                        </strong>
+
+                        {% if request.user.email %}
+                            <small>{{ request.user.email }}</small>
+                        {% endif %}
+
+                        <a href="{% url 'dashboard' %}">⌂ Dashboard</a>
+                        <a href="{% url 'library' %}">▣ Library</a>
+                        <a href="#">◷ Book a Session</a>
+
+                        <form method="post" action="{% url 'logout' %}">
+                            {% csrf_token %}
+                            <button type="submit">⇥ Sign Out</button>
+                        </form>
+                    </div>
+                </div>
+            {% else %}
+                <a href="{% url 'login' %}" class="nav-button">Sign In</a>
+            {% endif %}
+        </nav>
+    </div>
+</header>
+
+<section class="welcome-banner" aria-label="Matriarch Mantle Global Initiatives">
+    <img src="{% static 'core/images/fontlinepage.jpeg' %}"
+         alt="Matriarch Mantle Global Initiatives — Beyond the Altar to the Nations">
+</section>
+
+<!-- =====================================================
+     HERO
+====================================================== -->
+
+<section class="hero" id="home">
+
+    <div class="hero-pattern"></div>
+    <div class="hero-glow hero-glow-a"></div>
+    <div class="hero-glow hero-glow-b"></div>
+
+    <div class="container hero-grid">
+
+        <div class="hero-copy">
+
+            <p class="eyebrow">
+                <span></span>
+                A Prophetic Intercessory Prayer Ministry
+            </p>
+
+            <h1>
+                Embrace the <span>Mantle.</span><br>
+                Build the <em>Legacy.</em>
+            </h1>
+
+            <p class="hero-lead">
+                Empowering women to embrace their God-given authority,
+                intercede for their families, and establish a legacy of faith.
+            </p>
+
+            <div class="hero-actions">
+                <a href="#mantle" class="btn btn-primary">
+                    Discover the Mantle ↗
+                </a>
+
+                <a href="#prayer" class="btn btn-outline-light">
+                    Enter the Prayer Room
+                </a>
+            </div>
+
+            <p class="hero-motto">
+                <span>“</span>
+                The Hand That Rocks the Cradle, Breaks the Chain.
+            </p>
+
+        </div>
+
+
+        <div class="hero-visual">
+
+            <div class="hero-slideshow">
+
+                <div class="hero-slides">
+
+                    <figure class="hero-slide is-active">
+                        <img src="{% static 'core/images/welcome1.png' %}" alt="Matriarch Mantle ministry">
+                        <figcaption>
+                            <span>01</span>
+                            <strong>Prayer. Authority. Legacy.</strong>
+                        </figcaption>
+                    </figure>
+
+                    <figure class="hero-slide">
+                        <img src="{% static 'core/images/outreach5.jpeg' %}" alt="Matriarch Mantle outreach">
+                        <figcaption>
+                            <span>02</span>
+                            <strong>Compassion in Action.</strong>
+                        </figcaption>
+                    </figure>
+
+                    <figure class="hero-slide">
+                        <img src="{% static 'core/images/outreach2.jpeg' %}" alt="Community outreach">
+                        <figcaption>
+                            <span>03</span>
+                            <strong>Beyond the Altar — To the Nations.</strong>
+                        </figcaption>
+                    </figure>
+
+                </div>
+
+                <button class="hero-control hero-prev" id="heroPrev" aria-label="Previous slide">‹</button>
+                <button class="hero-control hero-next" id="heroNext" aria-label="Next slide">›</button>
+
+                <div class="hero-slide-nav">
+                    <button class="hero-dot is-active" data-slide="0"></button>
+                    <button class="hero-dot" data-slide="1"></button>
+                    <button class="hero-dot" data-slide="2"></button>
+                </div>
+
+                <div class="hero-progress">
+                    <span id="heroProgress"></span>
+                </div>
+
+            </div>
+
+            <div class="hero-badge">
+                <img src="{% static 'core/images/matriarchlogo.png' %}" alt="Matriarch Mantle">
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="scroll-cue">Scroll to explore</div>
+
+</section>
+
+
+<!-- =====================================================
+     ABOUT / CALLING
+====================================================== -->
+
+<section class="section about" id="about">
+
+    <div class="container">
+
+        <div class="section-meta">
+            <span>01 — Our Calling</span>
+            <b>MATRIARCH MANTLE</b>
+        </div>
+
+        <div class="split-heading">
+
+            <div>
+                <p class="section-label">THE CALLING</p>
+
+                <h2>
+                    A woman of prayer can change the atmosphere of a family.
+                </h2>
+
+                <div class="gold-rule"></div>
+            </div>
+
+            <div class="body-copy">
+
+                <p class="lead">
+                    The Matriarch Mantle Prophetic Intercessory Prayer
+                    Ministry honors the God-given authority of women to
+                    transform the spiritual legacy of their families.
+                </p>
+
+                <p>
+                    Our mission is to empower women to embrace their role
+                    as matriarchs, equipping them to become effective
+                    intercessors and prayer warriors, making full use of
+                    the supernatural arsenal provided by God.
+                </p>
+
+                <a href="#scripture" class="text-link">
+                    Explore our foundation →
+                </a>
+
+            </div>
+
+        </div>
+
+        <div class="feature-image">
+            <img src="{% static 'core/images/intercessory-03.jpeg' %}" alt="Matriarch Mantle prayer ministry">
+
+            <div class="feature-label">
+                <strong>M²</strong>
+                <span>Prayer • Authority • Legacy</span>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     THE MANTLE
+====================================================== -->
+
+<section class="section mantle" id="mantle">
+
+    <div class="container mantle-grid">
+
+        <div class="mantle-copy">
+
+            <p class="section-label">02 — The Mantle</p>
+
+            <h2>
+                Step into the fire.
+            </h2>
+
+            <p>
+                Pray with boldness. Stand in the gap. The Holy Spirit
+                empowers believers to pray with boldness and confidence.
+                The Matriarch Mantle calls women to engage in divine
+                battle as intercessors — breaking chains, declaring
+                freedom, and contending for their families through prayer.
+            </p>
+
+            <div class="mantle-points">
+
+                <div>
+                    <b>01</b>
+                    <span>Intercede</span>
+                    <small>Stand in the gap.</small>
+                </div>
+
+                <div>
+                    <b>02</b>
+                    <span>Discern</span>
+                    <small>Hear with spiritual clarity.</small>
+                </div>
+
+                <div>
+                    <b>03</b>
+                    <span>Declare</span>
+                    <small>Speak life and freedom.</small>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <aside class="scripture-card">
+
+           
+            <div class="scripture-content">
+
+                <span class="card-kicker">Foundational Scripture</span>
+
+                <blockquote>
+                    “And they shall rebuild the old ruins; they shall raise
+                    up the former desolations; they shall repair the ruined
+                    cities, the desolations of many generations.”
+                </blockquote>
+
+                <cite>Isaiah 61:4</cite>
+
+            </div>
+
+        </aside>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     SCRIPTURAL PILLARS
+====================================================== -->
+
+<section class="section scripture" id="scripture">
+
+    <div class="container">
+
+        <div class="section-meta">
+            <span>03 — Scriptural Pillars</span>
+            <b>OUR FOUNDATION</b>
+        </div>
+
+        <div class="section-heading">
+
+            <h2>Standing on the Word.</h2>
+
+            <p>
+                Four foundations for women who pray with faith,
+                discernment, authority and purpose.
+            </p>
+
+        </div>
+
+        <div class="pillar-grid">
+
+            <article class="pillar">
+                <span>01</span>
+                <div>
+                    <h3>Authority</h3>
+                    <p>
+                        “I have given you authority to trample on snakes
+                        and scorpions and to overcome all the power of the enemy.”
+                    </p>
+                    <b>Luke 10:19</b>
+                </div>
+            </article>
+
+            <article class="pillar">
+                <span>02</span>
+                <div>
+                    <h3>Divine Weapons</h3>
+                    <p>
+                        “The weapons we fight with are not the weapons
+                        of the world... they have divine power to demolish strongholds.”
+                    </p>
+                    <b>2 Corinthians 10:4–5</b>
+                </div>
+            </article>
+
+            <article class="pillar">
+                <span>03</span>
+                <div>
+                    <h3>Effective Prayer</h3>
+                    <p>
+                        “The prayer of a righteous person is powerful and effective.”
+                    </p>
+                    <b>James 5:16</b>
+                </div>
+            </article>
+
+            <article class="pillar">
+                <span>04</span>
+                <div>
+                    <h3>Kingdom Keys</h3>
+                    <p>
+                        “Whatever you bind on earth will be bound in heaven,
+                        and whatever you loose on earth will be loosed in heaven.”
+                    </p>
+                    <b>Matthew 16:19</b>
+                </div>
+            </article>
+
+        </div>
+
+
+        <div class="scripture-banner">
+
+            <img src="{% static 'core/images/foundational-scripture.jpeg' %}" alt="Matriarch Mantle foundation">
+
+            <div>
+                <span>FOUNDATIONAL SCRIPTURE</span>
+                <h3>Rebuild. Raise. Repair.</h3>
+                <p>
+                    A visual expression of the ministry’s Isaiah 61:4 foundation.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     MOTTO
+====================================================== -->
+
+<section class="motto">
+
+    <div class="container motto-inner">
+
+        <div class="motto-logo">
+            <img src="{% static 'core/images/matriarchlogo.png' %}" alt="Matriarch Mantle logo">
+        </div>
+
+        <p class="section-label" style="color:var(--gold-light)">
+            OUR MOTTO
+        </p>
+
+        <h2>
+            “The Hand That Rocks the Cradle
+            <em>Breaks the Chain.</em>”
+        </h2>
+
+        <p>
+            At the heart of every family lies a powerful force: the matriarch.
+            Through prayer, wisdom, discernment and God-given authority,
+            women can contend for their families and cultivate a righteous legacy.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     FOUNDER
+====================================================== -->
+
+<section class="section founder" id="founder">
+
+    <div class="container founder-grid">
+
+        <div class="founder-visual">
+
+            <div class="portrait">
+                <img src="{% static 'core/images/founder1.jpeg' %}" alt="Pastor Michelle N. Layne">
+            </div>
+
+            <div class="portrait-tag">
+                <img src="{% static 'core/images/logo2.jpeg' %}" alt="Matriarch Mantle logo">
+                <span>Founder & Intercessor</span>
+            </div>
+
+        </div>
+
+
+        <div class="founder-copy">
+
+            <p class="section-label">04 — Our Founder</p>
+
+            <h2>
+                Pastor Michelle <em>N. Layne</em>
+            </h2>
+
+            <p class="lead">
+                A leader. A mother. An intercessor.
+            </p>
+
+            <p>
+                Pastor Michelle N. Layne is the founder of the Matriarch
+                Mantle Prophetic Intercessory Prayer Ministry and leads
+                Manifest Destiny Ministries.
+            </p>
+
+            <p>
+                As an ordained Pastor, Prophet and Elder, and a retired
+                Special Educator with more than three decades of professional
+                experience, she has embraced the role of “mother” to many —
+                imparting wisdom, compassion and guidance.
+            </p>
+
+            <a href="#contact" class="btn btn-dark" style="margin-top:25px">
+                Connect With the Ministry ↗
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     GLOBAL INITIATIVES
+====================================================== -->
+
+<section class="section global-initiatives" id="global-initiatives">
+
+    <div class="container">
+
+        <div class="section-meta">
+            <span>06 — Global Initiatives</span>
+            <b>BEYOND THE ALTAR — TO THE NATIONS</b>
+        </div>
+
+        <div class="global-intro">
+
+            <p class="section-label">MATRIARCH MANTLE GLOBAL INITIATIVES</p>
+
+            <h2>
+                Hope <em>Made Tangible.</em>
+            </h2>
+
+            <p class="global-tagline">
+                Beyond the altar — to the nations.
+            </p>
+
+            <p>
+                Matriarch Mantle Global Initiatives extends our commitment
+                to prayer, teaching, equipping, compassion and community
+                into communities beyond the local altar.
+            </p>
+
+            <p>
+                Through outreach, education, practical care and local
+                partnerships, we seek to strengthen women, support children
+                and families, and contribute to healthier communities and
+                lasting generational impact.
+            </p>
+
+        </div>
+
+
+        <div class="global-values">
+
+            <div class="global-value"><span>01</span><strong>Prayer</strong></div>
+            <div class="global-value"><span>02</span><strong>Teaching</strong></div>
+            <div class="global-value"><span>03</span><strong>Equipping</strong></div>
+            <div class="global-value"><span>04</span><strong>Compassion</strong></div>
+            <div class="global-value"><span>05</span><strong>Community</strong></div>
+            <div class="global-value"><span>06</span><strong>Global Impact</strong></div>
+
+        </div>
+
+
+        <div class="global-countries">
+
+            <article class="country-card">
+
+                <div class="country-image">
+                    <img src="{% static 'core/images/kenya.jpeg' %}" alt="Matriarch Mantle initiative in Kenya">
+                    <div class="country-overlay"></div>
+
+                    <div class="country-name">
+                        <small>Global Focus</small>
+                        <h3>Kenya</h3>
+                    </div>
+                </div>
+
+                <div class="country-content">
+
+                    <h4>Children, Education & Community Care</h4>
+
+                    <p>
+                        Supporting initiatives focused on children,
+                        education, literacy and practical community care
+                        through meaningful local partnerships.
+                    </p>
+
+                    <div class="country-focus">
+                        <span>Education</span>
+                        <span>Children</span>
+                        <span>Community Care</span>
+                    </div>
+                     <a class="outreach-country-link" href="kenya">
+                       <strong>Explore ↗</strong>
+                    </a> 
+
+                </div>
+
+            </article>
+
+
+            <article class="country-card">
+
+                <div class="country-image">
+                    <img src="{% static 'core/images/nigeria.jpeg' %}" alt="Matriarch Mantle initiative in Nigeria">
+                    <div class="country-overlay"></div>
+
+                    <div class="country-name">
+                        <small>Global Focus</small>
+                        <h3>Nigeria</h3>
+                    </div>
+                </div>
+
+                <div class="country-content">
+
+                    <h4>Dignity, Women, Children & Livelihood</h4>
+
+                    <p>
+                        Developing initiatives that support women,
+                        children and families through education,
+                        practical care, dignity and opportunities
+                        for community development.
+                    </p>
+
+                    <div class="country-focus">
+                        <span>Women</span>
+                        <span>Children</span>
+                        <span>Dignity</span>
+                        <span>Livelihood</span>
+                    </div>
+                    <a class="outreach-country-link" href="nigeria">
+                          <strong>Explore ↗</strong>
+                    </a>
+                </div>
+
+            </article>
+
+
+            <article class="country-card">
+
+                <div class="country-image">
+                    <img src="{% static 'core/images/ethopia2.jpeg' %}" alt="Matriarch Mantle initiative in Ethiopia">
+                    <div class="country-overlay"></div>
+
+                    <div class="country-name">
+                        <small>Global Focus</small>
+                        <h3>Ethiopia</h3>
+                    </div>
+                </div>
+
+                <div class="country-content">
+
+                    <h4>Dignity, Compassion & Community Support</h4>
+
+                    <p>
+                        Exploring compassionate and culturally responsible
+                        support for women, children and families through
+                        local relationships and community-focused initiatives.
+                    </p>
+
+                    <div class="country-focus">
+                        <span>Dignity</span>
+                        <span>Women</span>
+                        <span>Families</span>
+                        <span>Community</span>
+                    </div>
+
+                </div>
+                  <a class="outreach-country-link" href="ethopia">
+                <strong>Explore↗</strong>
+                  </a>
+
+            </article>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     IMPACT
+====================================================== -->
+
+<section class="section impact-areas" id="impact">
+
+    <div class="container">
+
+        <div class="section-meta">
+            <span>07 — Our Impact</span>
+            <b>PRAYER • EMPOWERMENT • COMMUNITY</b>
+        </div>
+
+        <div class="impact-intro">
+
+            <p class="section-label">WHERE WE SERVE</p>
+
+            <h2>
+                Turning <em>compassion</em> into action.
+            </h2>
+
+            <p>
+                Our work is centered on strengthening women, supporting
+                families, encouraging children and contributing to healthier
+                communities through faith, education, practical care and partnership.
+            </p>
+
+        </div>
+
+
+        <div class="impact-grid-new">
+
+            <article class="impact-card-new">
+                <span class="impact-number">01 — WOMEN</span>
+                <h3>Women & Leadership</h3>
+                <p>
+                    Empowering women to grow in confidence, leadership,
+                    spiritual maturity and their capacity to influence
+                    their families and communities.
+                </p>
+            </article>
+
+            <article class="impact-card-new">
+                <span class="impact-number">02 — FAMILIES</span>
+                <h3>Family Strengthening</h3>
+                <p>
+                    Supporting women and families through encouragement,
+                    teaching, prayer and initiatives that promote healthier
+                    family environments.
+                </p>
+            </article>
+
+            <article class="impact-card-new">
+                <span class="impact-number">03 — CHILDREN</span>
+                <h3>Children & Education</h3>
+                <p>
+                    Supporting educational opportunities, literacy and
+                    practical initiatives that help children develop
+                    and pursue a stronger future.
+                </p>
+            </article>
+
+            <article class="impact-card-new">
+                <span class="impact-number">04 — CARE</span>
+                <h3>Practical Compassion</h3>
+                <p>
+                    Responding to practical needs with dignity,
+                    compassion and community-centered care.
+                </p>
+            </article>
+
+            <article class="impact-card-new">
+                <span class="impact-number">05 — COMMUNITY</span>
+                <h3>Local Partnerships</h3>
+                <p>
+                    Building relationships with people and organizations
+                    who understand the communities they serve and can help
+                    create meaningful local impact.
+                </p>
+            </article>
+
+            <article class="impact-card-new">
+                <span class="impact-number">06 — LEGACY</span>
+                <h3>Generational Impact</h3>
+                <p>
+                    Equipping women and families to cultivate values,
+                    faith, wisdom and positive patterns that can influence
+                    generations to come.
+                </p>
+            </article>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     GALLERY
+====================================================== -->
+
+<section class="section gallery" id="gallery">
+
+    <div class="container">
+
+        <div class="section-meta">
+            <span>08 — Gallery & Exhibits</span>
+            <b>VISUAL MINISTRY</b>
+        </div>
+
+        <div class="section-heading">
+
+            <h2>A Legacy of Service. A Thread of Destiny</h2>
+
+        </div>
+
+        <article class="legacy-story" aria-labelledby="lifetime-commendation-title">
+            <span class="legacy-kicker">Manifest Destiny Ministries International, Inc.</span>
+            <h3 id="lifetime-commendation-title">The Inaugural MDM Commendation for Lifetime Achievement</h3>
+
+            <blockquote class="legacy-verse">
+                “Give her of the fruit of her hands; and let her own works praise her in the gates.”
+                <cite>Proverbs 31:31</cite>
+            </blockquote>
+
+            <p class="legacy-intro">Sometimes destiny can be recognized most clearly when we look backward.</p>
+            <p>Long before Manifest Destiny Ministries International, Inc. was established, before Matriarch Mantle (M²) was developed, and before M²OI Global Initiatives began carrying the ministry’s mandate into the nations, God was weaving together people, places, experiences, and relationships that would one day reveal a much larger story.</p>
+            <p>For Founder and Visionary Pastor Michelle N. Layne, one of those threads leads back to Ethiopia.</p>
+
+            <h4>A Seed Planted in Childhood</h4>
+            <p>Pastor Michelle’s heart for Ethiopia began when she was a young girl during the devastating Ethiopian famine. The images and stories of children and families experiencing profound hunger and suffering affected her deeply.</p>
+            <p>At the time, there was no ministry plan, no international initiative, and certainly no way for a child to understand how compassion awakened in one season might become connected to purpose decades later. There was simply a heart that had been touched.</p>
+            <p>But destiny often begins as a seed long before we recognize what has been planted.</p>
+            <p>Years later, in her early teens, Ethiopia appeared again in Pastor Michelle’s life—this time not through television images or distant news reports, but through relationship.</p>
+            <p>She became connected to Wubet and Hanna, daughters of Sister Tsedale Yigezu, affectionately known as Mamaye. Through her relationship with them, Pastor Michelle learned about their mother’s humanitarian work and service in Ethiopia.</p>
+            <p>Suddenly, the country that had first captured her compassion as a little girl was connected to people she knew personally. Another thread of destiny had been woven into the story.</p>
+
+            <h4>Honoring a Matriarch</h4>
+            <p>Decades later, on January 19, 2026, those threads converged in a remarkable moment.</p>
+            <p>Manifest Destiny Ministries International, Inc. presented its inaugural Commendation for Lifetime Achievement to Sister Tsedale Yigezu in celebration of her 80th birthday and in recognition of a lifetime characterized by faith, resilience, humanitarian service, advocacy, and commitment to strengthening women, children, families, and communities.</p>
+            <p>The commendation formally recognized Mamaye as a Titus 2 woman and matriarch whose wisdom, sacrifice, courage, and enduring influence had produced fruit across generations. She became the first recipient of the distinction.</p>
+            <p>At the time, the presentation appropriately honored a woman whose life’s work deserved recognition. Yet viewed within the unfolding story of Manifest Destiny Ministries, the moment also carried another significance.</p>
+            <p>The woman whose humanitarian work in Ethiopia had helped inspire a teenage Pastor Michelle was now being honored decades later through the nonprofit ministry that Pastor Michelle herself had founded. And the story was still unfolding.</p>
+
+            <h4>From Legacy to M²OI</h4>
+            <p>The values recognized in Mamaye’s life—service, dignity, compassion, generational influence, strengthening women and families, and responding to human need—are deeply aligned with the mandate now expressed through Matriarch Mantle and M²OI Global Initiatives.</p>
+            <p>M²OI carries prayer beyond the altar into practical service.</p>
+            <p>Today, that expanding mandate includes developing work in Ethiopia, where relationships are being cultivated to support women in Tigray who have endured the devastating effects of conflict, including women affected by conflict-related sexual and gender-based violence.</p>
+            <p>Through Pastor Michelle’s developing relationship with Prophetess Meseret Amare, M²OI is being connected to trusted individuals and communities on the ground and at the point of need. These relationships are helping the ministry listen first, understand actual needs, and develop responsible pathways through which dignity, care, and tangible support can reach women directly affected by the conflict.</p>
+            <p>And once again, Ethiopia appears in the story.</p>
+            <p>Only now, Pastor Michelle is no longer the little girl looking from afar and wondering about the suffering she sees. She is no longer only the teenager listening to the story of another woman’s humanitarian service.</p>
+            <p>She is now a woman carrying her own mandate—leading a ministry whose very name speaks of destiny, honoring the matriarch whose example helped shape her, and developing pathways through which another generation of Ethiopian women may be served.</p>
+
+            <h4>The Thread Was There All Along</h4>
+            <p>Looking backward makes visible what could not have been understood looking forward.</p>
+            <p>A child was moved by Ethiopia. A teenager was connected to Ethiopian women whose mother’s life demonstrated humanitarian service. A woman founded Manifest Destiny Ministries International.</p>
+            <p>That ministry established its first Lifetime Achievement Commendation and bestowed it upon the very matriarch whose life had intersected with her own developing sense of service decades earlier.</p>
+            <p>And now, through M²OI, the thread is returning to Ethiopia—not merely in compassion, but in action.</p>
+            <p>What once looked like separate moments can now be recognized as part of an unfolding destiny.</p>
+            <div class="legacy-thread" aria-label="The unfolding story">
+                <span>Compassion</span><span>Connection</span><span>Relationship</span><span>Legacy</span><span>Honor</span>
+            </div>
+            <p>Compassion became connection. Connection became relationship. Relationship became legacy. Legacy became honor. Honor now gives way to service.</p>
+            <p>This is why we believe destiny is more than a destination. Sometimes it is a divine thread—woven quietly through generations, relationships, places, and seasons until the pattern becomes visible.</p>
+            <p>And when we look upon what God has woven across the years—from a little girl’s heart for Ethiopia, to the influence of a matriarch, to the birth of a ministry, to a global mandate that is now reaching toward the very place where the story began—we can only say:</p>
+
+            <blockquote class="legacy-closing">
+                “This is the LORD’S doing; it is marvellous in our eyes.”
+                <cite>Psalm 118:23</cite>
+            </blockquote>
+            <p class="legacy-motto">Beyond the Altar — To the Nations. Hope Made Tangible.</p>
+        </article>
+
+        <div class="gallery-grid">
+
+            <figure class="gallery-item gallery-large" onclick="openLightbox(this)">
+                <img src="{% static 'core/images/outreach1.jpeg' %}" alt="Matriarch Mantle outreach">
+                <figcaption>Worship & The Word</figcaption>
+            </figure>
+
+            <figure class="gallery-item" onclick="openLightbox(this)">
+                <img src="{% static 'core/images/outreach3.jpeg' %}" alt="Community outreach">
+                <figcaption>Honour and recognition</figcaption>
+            </figure>
+
+            <figure class="gallery-item" onclick="openLightbox(this)">
+                <img src="{% static 'core/images/outreach8.jpeg' %}" alt="Outreach programme">
+                <figcaption>Impartation</figcaption>
+            </figure>
+
+            <figure class="gallery-item" onclick="openLightbox(this)">
+                <img src="{% static 'core/images/outreach2.jpeg' %}" alt="Community event">
+                
+            </figure>
+
+            <figure class="gallery-item" onclick="openLightbox(this)">
+                <img src="{% static 'core/images/outreach4.jpeg' %}" alt="Community activity">
+                <figcaption>Prophetic Prayers</figcaption>
+            </figure>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     PRAYER INVITATION
+====================================================== -->
+
+<section class="section prayer" id="prayer">
+
+    <div class="prayer-grid">
+
+        <div class="prayer-art">
+            <img src="{% static 'core/images/intercessory-031.jpeg' %}" alt="Prayer and intercession">
+        </div>
+
+        <div class="prayer-card">
+
+            <p class="section-label">09 — Prayer Invitation</p>
+
+            <h2>
+                Open your mouth.<br>
+                Speak the <em>Word.</em>
+            </h2>
+
+            <p>
+                There comes a moment when you stop simply enduring your
+                circumstances and begin discerning them. Let the Holy Spirit
+                lead you into prayer, faith and purposeful intercession.
+            </p>
+
+            <a href="#contact" class="btn btn-dark">
+                Send a Prayer Request ↗
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     PARTNERSHIP
+====================================================== -->
+
+<section class="section partnership" id="partnership">
+
+    <div class="container partnership-grid">
+
+        <div class="partnership-copy">
+
+            <p class="section-label">PARTNER WITH THE MISSION</p>
+
+            <h2>
+                Help us make <em>hope tangible.</em>
+            </h2>
+
+            <p>
+                Matriarch Mantle welcomes individuals, churches,
+                foundations, corporations, community organizations and
+                strategic partners who share our commitment to strengthening
+                women, supporting families, educating children and serving communities.
+            </p>
+
+            <p>
+                We believe meaningful change is strengthened through
+                collaboration. Together, we can move beyond the altar and
+                serve communities with compassion, dignity and purpose.
+            </p>
+
+
+            <div class="partnership-list">
+
+                <div class="partnership-item">
+                    <span>01</span>
+                    <strong>Program Partnerships</strong>
+                </div>
+
+                <div class="partnership-item">
+                    <span>02</span>
+                    <strong>Community Outreach</strong>
+                </div>
+
+                <div class="partnership-item">
+                    <span>03</span>
+                    <strong>Educational Initiatives</strong>
+                </div>
+
+                <div class="partnership-item">
+                    <span>04</span>
+                    <strong>Women's Empowerment</strong>
+                </div>
+
+                <div class="partnership-item">
+                    <span>05</span>
+                    <strong>Strategic Collaboration</strong>
+                </div>
+
+                <div class="partnership-item">
+                    <span>06</span>
+                    <strong>Community Support</strong>
+                </div>
+
+            </div>
+
+
+            <div class="hero-actions" style="margin-top:35px">
+
+                <a href="#contact" class="btn btn-primary">
+                    Partner With Us ↗
+                </a>
+
+                <a href="#global-initiatives" class="btn btn-outline-light">
+                    Explore Our Initiatives
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <aside class="partnership-card">
+
+            <span class="card-kicker">OUR APPROACH</span>
+
+            <h3>Faith With Practical Impact.</h3>
+
+            <p>
+                We seek to connect prayer and spiritual formation with
+                practical expressions of compassion, education, community
+                support and empowerment.
+            </p>
+
+            <p>
+                As our initiatives develop, we are committed to building
+                strong partnerships, documenting impact and stewarding
+                resources responsibly.
+            </p>
+
+            <a href="#contact" class="btn btn-dark">
+                Start a Conversation ↗
+            </a>
+
+        </aside>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     FEATURED BOOK
+====================================================== -->
+<section class="section featured-book" id="featured-book">
+    <div class="container">
+        <div class="book-intro">
+            <p class="section-label">Featured Book · Matriarch Mantle</p>
+            <h2><em>Redeeming the Bloodline</em><br>Donning the Matriarch Mantle</h2>
+            <p>
+                A message about breaking destructive cycles, reclaiming spiritual identity,
+                and building a legacy of healing and transformation for generations to come.
+                Explore the featured book and contact the ministry for ordering information,
+                a sample chapter, or group and ministry enquiries.
+            </p>
+
+             <a href="{% url 'library' %}" class="btn btn-dark">
+                See More details ↗
+            </a>
+        </div>
+
+
+    </div>
+</section>
+
+
+<!-- =====================================================
+     CONTACT
+====================================================== -->
+
+<section class="section contact" id="contact">
+
+    <div class="container contact-grid">
+
+        <div class="contact-copy">
+
+            <p class="section-label">10 — Stay Connected</p>
+
+            <h2>
+                Let's build a <em>legacy</em> of prayer together.
+            </h2>
+
+            <p>
+                Stay connected for resources, events, insights,
+                outreach opportunities and updates from the
+                Matriarch Mantle Global Initiatives.
+            </p>
+
+            <div class="contact-details">
+
+                <div>
+                    <small>Email</small>
+                    <a href="mailto:info@matriarchmantle.com">
+                        info@matriarchmantle.com
+                    </a>
+                </div>
+
+                <div>
+                    <small>Phone</small>
+                    <a href="tel:+18442393389">
+                        1-844-239-3389
+                    </a>
+                </div>
+
+                <div>
+                    <small>Mailing Address</small>
+                    C/O Manifest Destiny Ministries<br>
+                    2501 Chatham Road, Suite 5884<br>
+                    Springfield, Illinois 62704
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="contact-art">
+            <img src="{% static 'core/images/contact1.jpeg' %}" alt="Matriarch Mantle">
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     FOOTER
+====================================================== -->
+
+<footer class="footer">
+
+    <div class="container footer-inner">
+
+        <div class="footer-brand">
+            <strong style="font-family:var(--serif);font-size:25px">
+                MATRIARCH MANTLE
+            </strong>
+            <p>A Prophetic Intercessory Prayer Ministry</p>
+        </div>
+
+        <p>
+            © {% now "Y" %} Matriarch Mantle. All Rights Reserved.
+        </p>
+
+    </div>
+
+</footer>
+
+
+<button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
+
+
+<!-- LIGHTBOX -->
+
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+
+    <span class="close-lightbox">&times;</span>
+
+    <img id="lightboxImage" src="" alt="Gallery preview">
+
+</div>
+
+
+<script>
+    /* HEADER */
+    const header = document.getElementById("siteHeader");
+
+    window.addEventListener("scroll", () => {
+        header.classList.toggle("scrolled", window.scrollY > 30);
+    });
+
+
+    /* MOBILE MENU */
+    const menuToggle = document.getElementById("menuToggle");
+    const mainNav = document.getElementById("mainNav");
+
+    menuToggle.addEventListener("click", () => {
+        mainNav.classList.toggle("open");
+    });
+
+    document.querySelectorAll("#mainNav a").forEach(link => {
+        link.addEventListener("click", () => {
+            mainNav.classList.remove("open");
+        });
+    });
+
+
+    /* USER MENU */
+    const userButton = document.getElementById("userButton");
+    const userMenu = document.getElementById("userMenu");
+
+    if (userButton && userMenu) {
+        userButton.addEventListener("click", (event) => {
+            event.stopPropagation();
+            userMenu.classList.toggle("open");
+        });
+
+        document.addEventListener("click", () => {
+            userMenu.classList.remove("open");
+        });
+    }
+
+
+    /* HERO SLIDESHOW */
+    const slides = document.querySelectorAll(".hero-slide");
+    const dots = document.querySelectorAll(".hero-dot");
+    const progress = document.getElementById("heroProgress");
+
+    let currentSlide = 0;
+    let slideTimer;
+
+    function showSlide(index) {
+
+        currentSlide = (index + slides.length) % slides.length;
+
+        slides.forEach((slide, i) => {
+            slide.classList.toggle("is-active", i === currentSlide);
+        });
+
+        dots.forEach((dot, i) => {
+            dot.classList.toggle("is-active", i === currentSlide);
+        });
+
+        progress.style.animation = "none";
+        void progress.offsetWidth;
+        progress.style.animation = "heroProgress 6s linear forwards";
+    }
+
+    function nextSlide() {
+        showSlide(currentSlide + 1);
+    }
+
+    function startSlider() {
+        clearInterval(slideTimer);
+        slideTimer = setInterval(nextSlide, 6000);
+    }
+
+    document.getElementById("heroNext").addEventListener("click", () => {
+        nextSlide();
+        startSlider();
+    });
+
+    document.getElementById("heroPrev").addEventListener("click", () => {
+        showSlide(currentSlide - 1);
+        startSlider();
+    });
+
+    dots.forEach(dot => {
+        dot.addEventListener("click", () => {
+            showSlide(Number(dot.dataset.slide));
+            startSlider();
+        });
+    });
+
+    showSlide(0);
+    startSlider();
+
+
+    /* SCROLL PROGRESS */
+    const progressBar = document.getElementById("progressBar");
+
+    window.addEventListener("scroll", () => {
+
+        const scrollTop = window.scrollY;
+        const documentHeight =
+            document.documentElement.scrollHeight - window.innerHeight;
+
+        const percent =
+            documentHeight > 0
+                ? (scrollTop / documentHeight) * 100
+                : 0;
+
+        progressBar.style.width = percent + "%";
+    });
+
+
+    /* BACK TO TOP */
+    const backToTop = document.getElementById("backToTop");
+
+    window.addEventListener("scroll", () => {
+        backToTop.classList.toggle("visible", window.scrollY > 500);
+    });
+
+    backToTop.addEventListener("click", () => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    });
+
+
+    /* LIGHTBOX */
+    function openLightbox(element) {
+
+        const image = element.querySelector("img");
+        const lightbox = document.getElementById("lightbox");
+        const lightboxImage = document.getElementById("lightboxImage");
+
+        lightboxImage.src = image.src;
+        lightbox.classList.add("open");
+    }
+
+    function closeLightbox() {
+        document.getElementById("lightbox").classList.remove("open");
+    }
+
+    document.addEventListener("keydown", event => {
+        if (event.key === "Escape") {
+            closeLightbox();
+        }
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,21 @@
+{% extends "registration/auth_base.html" %}
+{% block title %}Create Account | Matriarch Mantle{% endblock %}
+{% block content %}
+<p class="eyebrow">Become part of the community</p><h2 class="form-heading">Create your account.</h2><p class="form-subtitle">Share a few details to join our community. Fields marked * are required.</p>
+{% if form.non_field_errors %}<div class="notice" role="alert">{{ form.non_field_errors }}</div>{% endif %}
+<form class="auth-form" method="post" action="{% url 'register' %}">{% csrf_token %}
+<div class="field"><label for="{{ form.first_name.id_for_label }}">First name *</label>{{ form.first_name }}{{ form.first_name.errors }}</div>
+<div class="field"><label for="{{ form.last_name.id_for_label }}">Last name *</label>{{ form.last_name }}{{ form.last_name.errors }}</div>
+<div class="field"><label for="{{ form.username.id_for_label }}">Username *</label>{{ form.username }}{{ form.username.errors }}</div>
+<div class="field"><label for="{{ form.email.id_for_label }}">Gmail / email address *</label>{{ form.email }}{{ form.email.errors }}<span class="field-help">Use an email address you can access for password recovery.</span></div>
+<div class="field"><label for="{{ form.phone_number.id_for_label }}">Phone number *</label>{{ form.phone_number }}{{ form.phone_number.errors }}</div>
+<div class="field"><label for="{{ form.gender.id_for_label }}">Gender *</label>{{ form.gender }}{{ form.gender.errors }}</div>
+<div class="field"><label for="{{ form.country.id_for_label }}">Country *</label>{{ form.country }}{{ form.country.errors }}</div>
+<div class="field"><label for="{{ form.city.id_for_label }}">City *</label>{{ form.city }}{{ form.city.errors }}</div>
+<div class="field"><label for="{{ form.password1.id_for_label }}">Password *</label>{{ form.password1 }}{{ form.password1.errors }}</div>
+<div class="field"><label for="{{ form.password2.id_for_label }}">Confirm password *</label>{{ form.password2 }}{{ form.password2.errors }}</div>
+<div class="field full"><label class="check-row"><input type="checkbox" name="terms" required> I confirm that the details I provided are accurate.</label></div>
+<button class="auth-button" type="submit">Create Account →</button>
+</form>
+<p class="auth-bottom">Already registered? <a href="{% url 'login' %}">Sign in</a></p>
+{% endblock %}

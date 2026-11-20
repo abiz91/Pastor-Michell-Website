@@ -1,0 +1,276 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Gallery & Resources | Matriarch-mantle</title>
+
+   <style>
+  :root{
+    --wine:#790d2d;
+    --deep-wine:#4c071d;
+    --red:#b72d3d;
+    --coral:#C20B35;
+    --orange:#f49a55;
+    --gold:#d8ad4c;
+    --gold-light:#f4d98a;
+    --cream:#fff8ed;
+    --ink:#35131a;
+    --paper:#fffaf2;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:#fff;color:var(--ink);font-family:Georgia,"Times New Roman",serif}
+  .bloodline-page{overflow:hidden;background: linear-gradient(
+  120deg,
+  #FC8B01 0%,
+  #EC352D 40%,
+  #C20B35 70%,
+  #A00928 100%
+);}
+  .section{position:relative;padding:clamp(48px,7vw,92px) max(5vw,22px);isolation:isolate}
+  .section:before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(circle at 12% 10%,rgba(255,220,157,.35),transparent 32%),linear-gradient(115deg,rgba(255,169,91,.18),rgba(119,4,40,.22))}
+  .inner{width:min(1160px,100%);margin:auto}
+  .eyebrow{text-transform:uppercase;letter-spacing:.2em;font:700 .75rem Arial,sans-serif;color:var(--gold-light)}
+  h1,h2,h3,p{margin-top:0}
+  h2{font-size:clamp(2rem,4vw,3.6rem);line-height:1.08;margin-bottom:22px}
+  .gold-rule{height:2px;width:100%;max-width:220px;background:linear-gradient(90deg,transparent,var(--gold-light),transparent);margin:20px auto 30px}
+  .lead{font-size:clamp(1.05rem,1.5vw,1.28rem);line-height:1.75}
+  .button{display:inline-block;padding:15px 28px;border:1px solid #f8df9b;border-radius:5px;background:linear-gradient(135deg,#f7df9b,#c18a2e 55%,#f5d77e);color:#42111a;text-decoration:none;text-transform:uppercase;letter-spacing:.08em;font:700 .82rem Arial,sans-serif;box-shadow:0 8px 22px #4a071d45;transition:.2s}
+  .button:hover{transform:translateY(-2px);filter:brightness(1.06)}
+  .image-placeholder{display:flex;align-items:center;justify-content:center;min-height:230px;padding:18px;border:1px dashed rgba(255,245,220,.8);background:rgba(73,5,25,.16);color:#fff5dc;text-align:center;font:600 .85rem Arial,sans-serif;letter-spacing:.04em}
+  .image-placeholder img{width:100%;height:100%;max-height:520px;object-fit:cover;display:block}
+  .book-mockup{background:transparent;border:0;padding:0;min-height:0}
+  .book-mockup img{object-fit:contain;max-height:490px}
+  .hero-copy{text-align:center;color:var(--cream);max-width:900px;margin:10; padding-right:200px; padding-left:50px;}
+  .hero-copy h2{font-size:clamp(2.1rem,5vw,4.6rem);font-style:italic;color:#fff2d0}
+  .hero-copy p{max-width:760px;margin:0 auto;line-height:1.7}
+  .triage-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(28px,5vw,70px);align-items:center}
+  .triage-copy{color:#fff7eb;font-size:clamp(1.05rem,1.6vw,1.35rem);font-style:italic;line-height:1.8}
+  .triage h2{color:var(--cream);text-align:center}
+  .quote-band{margin-top:30px;padding:22px;border-top:1px solid #f5d98b;border-bottom:1px solid #f5d98b;text-align:center;color:#fff0c7;font-size:clamp(1.1rem,2vw,1.65rem);font-style:italic}
+  .ledger{background:var(--paper);color:var(--ink);border-radius:10px;padding:clamp(24px,4vw,46px);box-shadow:0 18px 40px #3d071d35}
+  .ledger h2{color:var(--wine);font-size:clamp(1.8rem,3vw,2.8rem)}
+  .ledger-grid{display:grid;grid-template-columns:.75fr 1.25fr;gap:28px;align-items:center}
+  .ledger-note{font-size:1.05rem;line-height:1.7;font-style:italic}
+  .parchment{padding:clamp(22px,3vw,36px);background:linear-gradient(135deg,#f4dfac,#fff1c9 45%,#e8c987);border:1px solid #c69b4b;box-shadow:inset 0 0 30px #a36c2822}
+  .parchment h3{font-size:1.4rem;color:#5a1722}
+  .parchment p,.parchment li{line-height:1.6}
+  .author{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;color:var(--cream)}
+  .author h2{font-size:clamp(2rem,4vw,3.3rem);margin-bottom:8px}
+  .author-name{font-size:clamp(1.8rem,3.4vw,3rem);font-style:italic;color:var(--gold-light);margin-bottom:20px}
+  .author-copy{line-height:1.75}
+  .author-photo{position:relative}
+  .author-photo:before{content:"";position:absolute;inset:10% -8% -8% 12%;background:rgba(255,207,127,.18);z-index:-1;border-radius:50%}
+  .author-photo img{border-radius:8px;object-position:center top;max-height:570px}
+  .bio-strip{display:grid;grid-template-columns:220px 1fr;gap:30px;align-items:center;color:var(--cream);padding:38px 0;border-top:1px solid #f5d98b66}
+  .bio-strip img{width:100%;max-height:250px;object-fit:cover;object-position:top;border-radius:8px}
+  .download-card{background:var(--paper);padding:clamp(24px,4vw,44px);border-radius:10px;display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:center}
+  .download-card h2{color:var(--wine)}
+  .download-form{background:#1e1a1b;color:white;padding:28px;border:1px solid var(--gold);display:grid;gap:14px}
+  .download-form label{font:600 .8rem Arial,sans-serif}
+  .download-form input{width:100%;padding:13px;border:1px solid #c6a66c;border-radius:4px;background:#fff;color:#24151a}
+  .download-form button{cursor:pointer}
+  .tree-section{background:var(--paper);border-radius:10px;display:grid;grid-template-columns:.7fr 1.3fr;gap:28px;align-items:center;padding:clamp(24px,4vw,46px)}
+  .tree-section h2{color:var(--wine)}
+  .tree-section p{line-height:1.75}
+  .family{display:grid;grid-template-columns:.8fr 1.2fr;gap:34px;align-items:center;color:var(--cream)}
+  .family h2{color:#fff0c7}
+  .family p{line-height:1.7;font-style:italic}
+  .center-cta{text-align:center;color:var(--cream)}
+  .center-cta h2{color:#fff0c7}
+  .center-cta p{max-width:760px;margin:0 auto 26px;line-height:1.75}
+  @media(max-width:760px){
+    .section{padding:48px 20px}
+    .triage-grid,.ledger-grid,.author,.download-card,.tree-section,.family{grid-template-columns:1fr}
+    .book-mockup img{max-height:380px}
+    .author-photo{max-width:430px;margin:auto}
+    .bio-strip{grid-template-columns:100px 1fr;gap:18px}
+    .bio-strip img{max-height:150px}
+  }
+</style>
+</head>
+<body>
+<main class="bloodline-page">
+
+  <!-- SECTION 1: BOOK INTRO / HERO -->
+  <section class="section">
+    <div class="inner">
+      <div class="hero-copy">
+         <img src="{% static 'core/images/redeeming.jpeg'%}">
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 2: HOUSE OF CONSTANT TRIAGE -->
+  <section class="section triage">
+    <div class="inner">
+      <h2>Are You Living in a House of Constant Triage?</h2>
+      <div class="gold-rule"></div>
+      <div class="triage-grid">
+        <div class="image-placeholder book-mockup">
+          <img src="{% static 'core/images/reedeming.jpeg'%}" alt="Redeeming the Bloodline book front and back cover">
+        </div>
+        <div class="triage-copy">
+          <p>Many families are trapped in a state of perpetual emergency—running a non-stop triage tent over their domestic lives while generational battles continue to crash around them.</p>
+          <p>If you are exhausted from fighting the same cycles of fear, addiction, or codependency across your lineage, it may be time to look beyond surface-level behaviours and examine the roots of your family story.</p>
+          <a class="button" href="https://sdmntprnortheu.oaiusercontent.com/files/00000000-41f0-81f4-b67a-dbb97d93d44c/raw?se=2026-11-04T00%3A17%3A21Z&amp;sp=r&amp;sv=2026-02-06&amp;sr=b&amp;scid=0afcbc0b-de6f-4697-a4dc-b3c3679e49ca&amp;skoid=c30e7ce7-1f51-4051-a377-288cdba21c02&amp;sktid=a48cca56-e6da-484e-a814-9c849652bcb3&amp;skt=2026-11-03T09%3A33%3A15Z&amp;ske=2026-11-04T09%3A33%3A15Z&amp;sks=b&amp;skv=2026-02-06&amp;sig=JM0Xtuua45V%2BOYrJW3q0c12pKgzgALmkgrg1wO1c3rY%3D#download">Pre-order the Full Manual</a>
+        </div>
+      </div>
+      <div class="quote-band">Not everything in the bloodline was meant to be preserved.</div>
+    </div>
+  </section>
+
+  <!-- SECTION 3: ROOTS / FIRE OF GOD -->
+  <section class="section">
+    <div class="inner">
+      <div class="hero-copy">
+        <div class="eyebrow">A Call to Generational Restoration</div>
+        <h2>What Hides in the Roots Will Speak Through the Fruit</h2>
+        <p class="lead">Until it is answered by fire.</p>
+      </div>
+      <div class="ledger">
+        <h2>The Fire of God Belongs at the Root of Your Family Tree</h2>
+        <div class="ledger-grid">
+          <div>
+            <p class="ledger-note">“God is not trimming branches from your family tree. He is not negotiating with the serpents at the roots. He consumes them by Holy Ghost fire.”</p>
+            <p><strong>Family patterns the fire is coming for:</strong></p>
+            <ul>
+              <li>Behaviours that were normalised, not healed</li>
+              <li>Silence that protected what should have been exposed</li>
+              <li>Cycles that survived because no one challenged them</li>
+              <li>Financial dysfunction repeated across generations</li>
+              <li>Chronic delay, stagnation and emotional suppression</li>
+            </ul>
+          </div>
+          <div class="image-placeholder">
+            <img src="{% static 'core/images/rootpics1.jpeg'%}" alt="Symbolic image of a family tree with roots and fire">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 4: HIDDEN LEDGER -->
+  <section class="section">
+    <div class="inner ledger">
+      <div class="ledger-grid">
+        <div>
+          <div class="eyebrow" style="color:#9b6928">Understanding the Family Story</div>
+          <h2>Every Family Has a Hidden Ledger…</h2>
+          <p class="ledger-note">In the spirit realm, your family lineage functions like a corporate estate—and it keeps a precise, unbroken record of every spiritual transaction made across generations.</p>
+          <a class="button" href="https://sdmntprnortheu.oaiusercontent.com/files/00000000-41f0-81f4-b67a-dbb97d93d44c/raw?se=2026-11-04T00%3A17%3A21Z&amp;sp=r&amp;sv=2026-02-06&amp;sr=b&amp;scid=0afcbc0b-de6f-4697-a4dc-b3c3679e49ca&amp;skoid=c30e7ce7-1f51-4051-a377-288cdba21c02&amp;sktid=a48cca56-e6da-484e-a814-9c849652bcb3&amp;skt=2026-11-03T09%3A33%3A15Z&amp;ske=2026-11-04T09%3A33%3A15Z&amp;sks=b&amp;skv=2026-02-06&amp;sig=JM0Xtuua45V%2BOYrJW3q0c12pKgzgALmkgrg1wO1c3rY%3D#download">Learn More</a>
+        </div>
+        <div class="parchment">
+          <h3>How the Hidden Ledger Works</h3>
+          <ul>
+            <li><strong>The spiritual debt:</strong> Long before you or your children were born, family patterns and unresolved wounds may have shaped the environment you inherited.</li>
+            <li><strong>The collection agency:</strong> Repeated patterns can show up in family relationships, habits, fears and choices until they are recognised and addressed.</li>
+            <li><strong>The legal loopholes:</strong> Unexamined family history can keep harmful patterns hidden and unchallenged.</li>
+          </ul>
+          <h3>The Matriarch’s Response</h3>
+          <p>As a gatekeeper guided by faith, you can choose to face your family story with courage, seek wisdom, and begin a deliberate process of healing, accountability and restoration.</p>
+          <p><em>Bring what has been hidden into the light. Let truth, prayer and wise action become the beginning of a new family legacy.</em></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 5: MEET THE AUTHOR -->
+  <section class="section">
+    <div class="inner author">
+      <div>
+        <div class="eyebrow">Meet the Author</div>
+        <h2>Michelle Nicole Benjamin-Layne</h2>
+        <div class="author-name">A Voice for Generational Restoration</div>
+        <p class="author-copy">Michelle Nicole Benjamin-Layne is a visionary force behind Manifest Destiny Ministries International and the architect of the global Matriarch Mantle movement. With decades of ministry service, leadership and community engagement, she is committed to equipping women and families to recognise their influence, confront destructive patterns and build a legacy rooted in faith, purpose and truth.</p>
+        <p class="author-copy">Through teaching, mentorship and spiritual leadership, she calls a generation of women to lead with courage, wisdom and responsibility—at home, in the church and in their communities.</p>
+      </div>
+      <div class="image-placeholder author-photo">
+        <img src="{% static 'core/images/bookauthor.jpeg'%}" alt="Portrait of author Michelle Nicole Benjamin-Layne">
+      </div>
+    </div>
+    <div class="inner bio-strip">
+      <img src="{% static 'core/images/bookauthor2.jpeg'%}" alt="Michelle Nicole Benjamin-Layne in ministry">
+      <div>
+        <h3>Her Ministry &amp; Mission</h3>
+        <p class="author-copy">Her work brings together spiritual formation, leadership development and a commitment to strengthening families. Her message invites readers to move beyond inherited patterns and become intentional builders of a healthier, faith-filled legacy.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 6: FREE CHAPTER DOWNLOAD -->
+  <section class="section" id="download">
+    <div class="inner download-card">
+      <div>
+        <div class="eyebrow" style="color:#9b6928">A First Step Toward Change</div>
+        <h2>Taste the Revelation Before the Release</h2>
+        <p class="lead">Get a complimentary first chapter of <em>Redeeming the Bloodline: Donning the Matriarch Mantle</em>.</p>
+        <p>Enter your details to receive Chapter One and begin reflecting on the patterns, stories and strengths that shape your family legacy.</p>
+        <p><small>You'll also receive details about upcoming Matriarch Mantle teachings and community training opportunities.</small></p>
+      </div>
+      <!-- Connect this form to your email platform or website backend before launch -->
+      <form class="download-form" action="https://sdmntprnortheu.oaiusercontent.com/files/00000000-41f0-81f4-b67a-dbb97d93d44c/raw?se=2026-11-04T00%3A17%3A21Z&amp;sp=r&amp;sv=2026-02-06&amp;sr=b&amp;scid=0afcbc0b-de6f-4697-a4dc-b3c3679e49ca&amp;skoid=c30e7ce7-1f51-4051-a377-288cdba21c02&amp;sktid=a48cca56-e6da-484e-a814-9c849652bcb3&amp;skt=2026-11-03T09%3A33%3A15Z&amp;ske=2026-11-04T09%3A33%3A15Z&amp;sks=b&amp;skv=2026-02-06&amp;sig=JM0Xtuua45V%2BOYrJW3q0c12pKgzgALmkgrg1wO1c3rY%3D#" method="post">
+        <h3>Redeeming the Bloodline</h3>
+        <p>Request your complimentary chapter.</p>
+        <label for="name">Your Name</label>
+        <input id="name" name="name" type="text" placeholder="Enter your name" required="">
+        <label for="email">Email Address</label>
+        <input id="email" name="email" type="email" placeholder="Enter your email address" required="">
+        <button class="button" type="submit">Send Me Chapter One</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- SECTION 7: END THE CYCLE -->
+  <section class="section">
+    <div class="inner tree-section">
+      <div class="image-placeholder">
+        <img src="{% static 'core/images/tree.jpeg'%}" alt="Illustration of a family tree with golden leaves and strong roots">
+      </div>
+      <div>
+        <div class="eyebrow" style="color:#9b6928">Choose a Different Legacy</div>
+        <h2>End the Cycle of Generational Trauma</h2>
+        <p>Trauma is not just a memory; its effects can echo through family relationships, beliefs and behaviours. But inherited patterns do not have to define the future.</p>
+        <p>Through the pages of <em>Redeeming the Bloodline</em>, readers are invited to look beneath the surface, acknowledge what needs attention, and take purposeful steps toward healing, forgiveness, wise boundaries and lasting change.</p>
+        <p><strong>Your history may shape your starting point. It does not have to dictate your destination.</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 8: FAMILY / ROOT OF THE TREE -->
+  <section class="section">
+    <div class="inner family">
+      <div>
+        <div class="eyebrow">The Legacy Begins at Home</div>
+        <h2>The Fire of God Belongs at the Root of Your Family Tree</h2>
+        <p>If you are exhausted from fighting the same repeating battles in your life and home, it may be time to look beyond surface symptoms and seek the deeper roots of the story.</p>
+      </div>
+      <div class="image-placeholder">
+        <img src="{% static 'core/images/family.jpeg'%}" alt="A multigenerational family sitting together">
+      </div>
+      <div class="inner">
+      <div class="hero-copy">
+         <img src="{% static 'core/images/family2.jpeg'%}">
+      </div>
+    </div>
+
+    </div>
+  </section>
+
+  <!-- FINAL CALL TO ACTION -->
+  <section class="section">
+    <div class="inner center-cta">
+      <div class="eyebrow">Redeeming the Bloodline · Donning the Matriarch Mantle</div>
+      <h2>Your Family Story Can Move in a New Direction.</h2>
+      <p>Discover the message, explore the book and take your next step toward a legacy marked by faith, healing, wisdom and intentional leadership.</p>
+      <a class="button" href="https://sdmntprnortheu.oaiusercontent.com/files/00000000-41f0-81f4-b67a-dbb97d93d44c/raw?se=2026-11-04T00%3A17%3A21Z&amp;sp=r&amp;sv=2026-02-06&amp;sr=b&amp;scid=0afcbc0b-de6f-4697-a4dc-b3c3679e49ca&amp;skoid=c30e7ce7-1f51-4051-a377-288cdba21c02&amp;sktid=a48cca56-e6da-484e-a814-9c849652bcb3&amp;skt=2026-11-03T09%3A33%3A15Z&amp;ske=2026-11-04T09%3A33%3A15Z&amp;sks=b&amp;skv=2026-02-06&amp;sig=JM0Xtuua45V%2BOYrJW3q0c12pKgzgALmkgrg1wO1c3rY%3D#download">Get Your Free Chapter</a>
+    </div>
+  </section>
+
+</main>
+
+
+</body></html>

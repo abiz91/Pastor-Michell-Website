@@ -1,0 +1,34 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block title %}Account | Matriarch Mantle{% endblock %}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--wine:#74123A;--wine-dark:#4E0A27;--wine-soft:#5B0D2C;--gold:#C6A15B;--gold-light:#E5C77C;--cream:#f6efe8;--white:#fffaf7;--ink:#3B1827;--muted:#71656a;--line:#e8dce0;--serif:"Cormorant Garamond",Georgia,serif;--sans:"Inter",Arial,sans-serif}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;background:linear-gradient(135deg,rgba(78,10,39,.94),rgba(116,18,58,.88)),url("{% static 'core/images/welcome1.png' %}") center/cover fixed;font-family:var(--sans);color:var(--ink);display:flex;align-items:center;justify-content:center;padding:28px 16px}
+a{color:var(--wine);text-decoration:none}a:hover{text-decoration:underline}.auth-shell{width:min(1050px,100%);min-height:640px;display:grid;grid-template-columns:.85fr 1.15fr;background:var(--white);border-radius:20px;overflow:hidden;box-shadow:0 30px 90px #21051380;border:1px solid #ffffff60}
+.auth-aside{position:relative;background:linear-gradient(160deg,#4E0A27eF,#74123Aee),url("{% static 'core/images/welcome1.png' %}") center/cover;color:white;padding:48px 42px;display:flex;flex-direction:column;justify-content:space-between}
+.brand-mark{width:170px;height:90px;background:#fff;border-radius:8px;padding:8px;display:flex;align-items:center;justify-content:center}.brand-mark img{max-width:100%;max-height:100%;object-fit:contain}
+.eyebrow{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-light);font-weight:700;margin:0 0 14px}.aside-title{font:500 clamp(38px,4vw,57px)/.98 var(--serif);margin:0 0 20px}.aside-title em{color:var(--gold-light)}.aside-copy{color:#ffffffd9;line-height:1.8;font-size:14px;max-width:350px}.aside-motto{font:italic 24px/1.2 var(--serif);color:#fff;border-left:2px solid var(--gold);padding-left:16px;margin-top:32px}.aside-footer{font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:#ffffffb8}
+.auth-main{padding:45px clamp(25px,5vw,62px);display:flex;flex-direction:column;justify-content:center}.mobile-brand{display:none}.form-heading{font:500 clamp(38px,4vw,52px)/1 var(--serif);margin:0 0 10px;color:var(--wine-dark)}.form-subtitle{margin:0 0 28px;color:var(--muted);font-size:13px;line-height:1.7}
+.auth-form{display:grid;grid-template-columns:1fr 1fr;gap:16px 14px}.field{display:flex;flex-direction:column;gap:7px;min-width:0}.field.full{grid-column:1/-1}.field label{font-size:11px;font-weight:700;letter-spacing:.04em;color:#4a2937}.field input,.field select{width:100%;height:47px;border:1px solid #d9cbd1;border-radius:8px;padding:0 13px;font:13px var(--sans);color:var(--ink);background:#fff;outline:none}.field input:focus,.field select:focus{border-color:var(--wine);box-shadow:0 0 0 3px #74123a18}.field input::placeholder{color:#9b8d93}.field-help{font-size:11px;color:var(--muted)}.form-options{display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:11px;margin:2px 0 6px}.check-row{display:flex;align-items:flex-start;gap:8px;color:var(--muted)}.check-row input{accent-color:var(--wine);margin-top:2px}.auth-button{grid-column:1/-1;border:0;border-radius:999px;min-height:50px;background:var(--wine);color:white;text-transform:uppercase;letter-spacing:.13em;font-size:11px;font-weight:700;cursor:pointer;transition:.2s}.auth-button:hover{background:var(--wine-dark);transform:translateY(-1px)}.auth-bottom{text-align:center;font-size:12px;color:var(--muted);margin:22px 0 0}.auth-bottom a{font-weight:700}.message-list{padding:0;list-style:none}.message-list li,.errorlist{color:#9c1c38;font-size:12px;margin:5px 0}.notice{padding:11px 13px;background:#f7e9ed;border-left:3px solid var(--wine);border-radius:5px;font-size:12px;margin-bottom:15px}.small-link{font-size:11px}.auth-form.single{grid-template-columns:1fr}.auth-form.single .field{grid-column:1/-1}
+@media(max-width:760px){body{padding:12px;background-attachment:scroll}.auth-shell{grid-template-columns:1fr;min-height:0;max-width:540px}.auth-aside{display:none}.auth-main{padding:28px 22px 32px}.mobile-brand{display:flex;align-items:center;gap:12px;margin-bottom:24px}.mobile-brand .brand-mark{width:80px;height:52px;border:1px solid var(--line)}.mobile-brand strong{font:600 20px var(--serif);color:var(--wine)}.mobile-brand small{display:block;font-size:9px;letter-spacing:.12em;color:var(--muted)}.form-heading{font-size:42px}.auth-form{grid-template-columns:1fr}.field.full,.auth-button{grid-column:1/-1}.form-options{align-items:flex-start;flex-direction:column}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body><main class="auth-shell">
+<aside class="auth-aside">
+<div class="brand-mark"><img src="{% static 'core/images/logo.jpeg' %}" alt="Matriarch Mantle logo"></div>
+<div><p class="eyebrow">A Prophetic Intercessory Prayer Ministry</p><h1 class="aside-title">Embrace the <em>Mantle.</em><br>Build the Legacy.</h1>
+<p class="aside-copy">Join a community committed to prayer, spiritual growth, compassion and building a lasting legacy of faith.</p>
+<p class="aside-motto">“The Hand That Rocks the Cradle, Breaks the Chain.”</p></div>
+<div class="aside-footer">Prayer · Authority · Legacy</div>
+</aside>
+<section class="auth-main">
+<div class="mobile-brand"><div class="brand-mark"><img src="{% static 'core/images/logo.jpeg' %}" alt="Matriarch Mantle logo"></div><div><strong>Matriarch Mantle</strong><small>PRAYER · AUTHORITY · LEGACY</small></div></div>
+{% if messages %}<ul class="message-list">{% for message in messages %}<li class="notice">{{ message }}</li>{% endfor %}</ul>{% endif %}
+{% block content %}{% endblock %}
+</section></main></body></html>

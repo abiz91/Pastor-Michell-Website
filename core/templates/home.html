@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Matriarch Mantle Prophetic Intercessory Prayer Ministry — prayer, intercession, teaching and equipping.">
+  <title>Matriarch Mantle | Prophetic Intercessory Prayer Ministry</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Italianno&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/matriarch.css' %}">
+</head>
+<body>
+<header class="site-header">
+  <a class="brand" href="#home" aria-label="Matriarch Mantle home">
+    <img src="{% static 'images/m2-logo.jpg' %}" alt="Matriarch Mantle crowned M² logo">
+    <span class="brand-copy"><strong>MATRIARCH MANTLE</strong><small>PROPHETIC INTERCESSORY PRAYER MINISTRY</small></span>
+  </a>
+  <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
+  <nav class="main-nav" id="mainNav" aria-label="Main navigation">
+    <a class="nav-link active" href="#home">Home</a>
+    <div class="nav-group"><a class="nav-link" href="#about">About <span>⌄</span></a><div class="dropdown"><a href="#about">About the Ministry</a><a href="#vision">Vision &amp; Mission</a><a href="#founder">Meet the Founder</a><a href="#leadership">Leadership</a></div></div>
+    <div class="nav-group"><a class="nav-link" href="#mantle">The Mantle <span>⌄</span></a><div class="dropdown"><a href="#mantle">The Mantle</a><a href="#scripture">Scripture &amp; Foundation</a><a href="#mandate">Our Mandate</a></div></div>
+    <div class="nav-group"><a class="nav-link" href="#initiatives">Global Initiatives <span>⌄</span></a><div class="dropdown"><a href="#ethiopia">Ethiopia &amp; Tigray</a><a href="#nigeria">Nigeria</a><a href="#kenya">Kenya</a><a href="#impact">Our Impact</a></div></div>
+    <div class="nav-group"><a class="nav-link" href="#books">Books <span>⌄</span></a><div class="dropdown"><a href="#redeeming">Redeeming the Bloodline</a><a href="#cellular">Cellular Embassy</a><a href="#books">All Publications</a></div></div>
+    <a class="nav-link" href="#gallery">Gallery</a>
+    <a class="nav-link" href="#contact">Connect</a>
+    {# Replace signup/login URL names with the names used in your project. #}
+    <a class="signup-btn" href="{% url 'login' %}"><span aria-hidden="true">♙</span> Sign In/a>
+  </nav>
+</header>
+
+<main>
+  <section class="hero" id="home">
+    <div class="botanical botanical-left" aria-hidden="true"></div><div class="botanical botanical-right" aria-hidden="true"></div>
+    <div class="hero-copy">
+      <p class="welcome-script">Welcome to</p>
+      <img class="hero-logo" src="{% static 'images/m2-logo.jpg' %}" alt="Crowned M² Matriarch Mantle logo">
+      <h1>Matriarch Mantle</h1>
+      <p class="hero-subtitle">PROPHETIC INTERCESSORY PRAYER MINISTRY</p>
+      <div class="gold-rule"><span>◆</span></div>
+      <p class="pillars">PRAYER <i>•</i> INTERCESSION <i>•</i> TEACHING <i>•</i> EQUIPPING</p>
+      <p class="affiliation"><em>of</em><br>MANIFEST DESTINY MINISTRIES INTERNATIONAL, Inc.</p>
+      <p class="motto">“The Hand That Rocks the Cradle, Breaks the Chain.”</p>
+      <div class="hero-actions"><a class="button button-gold" href="#about">Explore the Ministry</a><a class="button" href="#books">Our Books</a><a class="button" href="#initiatives">Global Initiatives</a><a class="button" href="#contact">Prayer Room</a></div>
+    </div>
+    <div class="founder-photo"><img src="{% static 'core/images/welcome-page-reference.jpg' %}" alt="Pastor Michelle N. Layne"></div>
+    <div class="founder-label"><strong>Pastor Michelle N. Layne</strong><span>FOUNDER &amp; VISIONARY</span></div>
+  </section>
+
+  <section class="intro light-section" id="about"><p class="script-label">A Divine Assignment</p><h2>Welcome to Matriarch Mantle</h2><p>Matriarch Mantle Prophetic Intercessory Prayer Ministry is committed to prayer, intercession, biblical teaching, spiritual equipping and advancing God's purpose across generations and nations. We seek to strengthen individuals and families through faith, wisdom, prayer and purposeful service.</p></section>
+  <section class="dark-section" id="mandate"><p class="script-label">Our Foundation</p><h2>Prayer • Intercession • Teaching • Equipping</h2><div class="pillar-grid"><article><span>✦</span><h3>Prayer</h3><p>Building a life and ministry founded on prayer.</p></article><article><span>✧</span><h3>Intercession</h3><p>Standing in the gap for individuals, families and nations.</p></article><article><span>✥</span><h3>Teaching</h3><p>Equipping believers through biblical truth.</p></article><article><span>♕</span><h3>Equipping</h3><p>Preparing people to fulfil their God-given assignments.</p></article></div></section>
+  <section class="light-section" id="founder"><p class="script-label">The Visionary</p><h2>Pastor Michelle N. Layne</h2><p>Discover the founder and visionary behind Matriarch Mantle and the ministry's commitment to prayer, spiritual growth, leadership and equipping.</p></section>
+  <section class="dark-section" id="mantle"><p class="script-label">The Mantle</p><h2>A Mandate of Prayer and Equipping</h2><p id="scripture">Rooted in Scripture, prayer and the call to serve, the ministry seeks to nurture spiritual growth and purposeful influence.</p></section>
+  <section class="light-section" id="initiatives"><p class="script-label">Beyond the Altar — To the Nations</p><h2>Global Initiatives</h2><p>Our global initiatives extend compassion, practical care, prayer and community support beyond the walls of the ministry.</p><div class="country-links"><a id="ethiopia" href="#contact">Ethiopia &amp; Tigray</a><a id="nigeria" href="#contact">Nigeria</a><a id="kenya" href="#contact">Kenya</a><a id="impact" href="#contact">Our Impact</a></div></section>
+  <section class="dark-section" id="books"><p class="script-label">Knowledge • Revelation • Transformation</p><h2>Books &amp; Publications</h2><p id="redeeming">Redeeming the Bloodline</p><p id="cellular">Cellular Embassy: The Permanence of the Carry</p></section>
+  <section class="light-section" id="gallery"><p class="script-label">Moments of Ministry</p><h2>Gallery</h2><p>Explore photographs and memories from ministry gatherings, prayer meetings, outreach activities and special events.</p></section>
+  <section class="dark-section" id="contact"><p class="script-label">Connect With Us</p><h2>Prayer • Partnership • Connection</h2><p>Reach out for prayer, ministry enquiries and partnership opportunities.</p><a class="button button-gold" href="mailto:info@matriarchmantle.com">Contact the Ministry</a></section>
+</main>
+<footer class="site-footer"><strong>MATRIARCH MANTLE</strong><p>Prophetic Intercessory Prayer Ministry</p><p>“The Hand That Rocks the Cradle, Breaks the Chain.”</p><small>© {% now "Y" %} Matriarch Mantle. All Rights Reserved.</small></footer>
+<script src="{% static 'js/matriarch.js' %}"></script>
+</body>
+</html>

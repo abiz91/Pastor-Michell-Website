@@ -1,0 +1,161 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Gallery & Resources | Matriarch-mantle</title>
+
+   <style>
+  :root{
+    --wine:#790d2d;
+    --deep-wine:#4c071d;
+    --red:#b72d3d;
+    --coral:#C20B35;
+    --orange:#f49a55;
+    --gold:#d8ad4c;
+    --gold-light:#f4d98a;
+    --cream:#fff8ed;
+    --ink:#35131a;
+    --paper:#fffaf2;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:#fff;color:var(--ink);font-family:Georgia,"Times New Roman",serif}
+  .bloodline-page{overflow:hidden;background: linear-gradient(
+  120deg,
+  #001F1B 0%,
+  #003D35 30%,
+  #005747 55%,
+  #00382F 75%,
+  #001B18 100%
+);}
+  .section{position:relative;padding:clamp(48px,7vw,92px) max(5vw,22px);isolation:isolate}
+  .section:before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(circle at 12% 10%,rgba(255,220,157,.35),transparent 32%),linear-gradient(115deg,rgba(255,169,91,.18),rgba(119,4,40,.22))}
+  .inner{width:min(1160px,100%);margin:auto}
+  .eyebrow{text-transform:uppercase;letter-spacing:.2em;font:700 .75rem Arial,sans-serif;color:var(--gold-light)}
+  h1,h2,h3,p{margin-top:0}
+  h2{font-size:clamp(2rem,4vw,3.6rem);line-height:1.08;margin-bottom:22px}
+  .gold-rule{height:2px;width:100%;max-width:220px;background:linear-gradient(90deg,transparent,var(--gold-light),transparent);margin:20px auto 30px}
+  .lead{font-size:clamp(1.05rem,1.5vw,1.28rem);line-height:1.75}
+  .button{display:inline-block;padding:15px 28px;border:1px solid #f8df9b;border-radius:5px;background:linear-gradient(135deg,#f7df9b,#c18a2e 55%,#f5d77e);color:#42111a;text-decoration:none;text-transform:uppercase;letter-spacing:.08em;font:700 .82rem Arial,sans-serif;box-shadow:0 8px 22px #4a071d45;transition:.2s}
+  .button:hover{transform:translateY(-2px);filter:brightness(1.06)}
+  .image-placeholder{display:flex;align-items:center;justify-content:center;min-height:230px;padding:18px;border:1px dashed rgba(255,245,220,.8);background:rgba(73,5,25,.16);color:#fff5dc;text-align:center;font:600 .85rem Arial,sans-serif;letter-spacing:.04em}
+  .image-placeholder img{width:100%;height:100%;max-height:520px;object-fit:cover;display:block}
+  .book-mockup{background:transparent;border:0;padding:0;min-height:0}
+  .book-mockup img{object-fit:contain;max-height:490px}
+  .hero-copy{text-align:center;color:var(--cream);max-width:900px;margin:10; padding-right:200px; padding-left:50px;}
+  .hero-copy h2{font-size:clamp(2.1rem,5vw,4.6rem);font-style:italic;color:#fff2d0}
+  .hero-copy p{max-width:760px;margin:0 auto;line-height:1.7}
+  .triage-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(28px,5vw,70px);align-items:center}
+  .triage-copy{color:#fff7eb;font-size:clamp(1.05rem,1.6vw,1.35rem);font-style:italic;line-height:1.8}
+  .triage h2{color:var(--cream);text-align:center}
+  .quote-band{margin-top:30px;padding:22px;border-top:1px solid #f5d98b;border-bottom:1px solid #f5d98b;text-align:center;color:#fff0c7;font-size:clamp(1.1rem,2vw,1.65rem);font-style:italic}
+  .ledger{background:var(--paper);color:var(--ink);border-radius:10px;padding:clamp(24px,4vw,46px);box-shadow:0 18px 40px #3d071d35}
+  .ledger h2{color:var(--wine);font-size:clamp(1.8rem,3vw,2.8rem)}
+  .ledger-grid{display:grid;grid-template-columns:.75fr 1.25fr;gap:28px;align-items:center}
+  .ledger-note{font-size:1.05rem;line-height:1.7;font-style:italic}
+  .parchment{padding:clamp(22px,3vw,36px);background:linear-gradient(135deg,#f4dfac,#fff1c9 45%,#e8c987);border:1px solid #c69b4b;box-shadow:inset 0 0 30px #a36c2822}
+  .parchment h3{font-size:1.4rem;color:#5a1722}
+  .parchment p,.parchment li{line-height:1.6}
+  .author{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;color:var(--cream)}
+  .author h2{font-size:clamp(2rem,4vw,3.3rem);margin-bottom:8px}
+  .author-name{font-size:clamp(1.8rem,3.4vw,3rem);font-style:italic;color:var(--gold-light);margin-bottom:20px}
+  .author-copy{line-height:1.75}
+  .author-photo{position:relative}
+  .author-photo:before{content:"";position:absolute;inset:10% -8% -8% 12%;background:rgba(255,207,127,.18);z-index:-1;border-radius:50%}
+  .author-photo img{border-radius:8px;object-position:center top;max-height:570px}
+  .bio-strip{display:grid;grid-template-columns:220px 1fr;gap:30px;align-items:center;color:var(--cream);padding:38px 0;border-top:1px solid #f5d98b66}
+  .bio-strip img{width:100%;max-height:250px;object-fit:cover;object-position:top;border-radius:8px}
+  .download-card{background:var(--paper);padding:clamp(24px,4vw,44px);border-radius:10px;display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:center}
+  .download-card h2{color:var(--wine)}
+  .download-form{background:#1e1a1b;color:white;padding:28px;border:1px solid var(--gold);display:grid;gap:14px}
+  .download-form label{font:600 .8rem Arial,sans-serif}
+  .download-form input{width:100%;padding:13px;border:1px solid #c6a66c;border-radius:4px;background:#fff;color:#24151a}
+  .download-form button{cursor:pointer}
+  .tree-section{background:var(--paper);border-radius:10px;display:grid;grid-template-columns:.7fr 1.3fr;gap:28px;align-items:center;padding:clamp(24px,4vw,46px)}
+  .tree-section h2{color:var(--wine)}
+  .tree-section p{line-height:1.75}
+  .family{display:grid;grid-template-columns:.8fr 1.2fr;gap:34px;align-items:center;color:var(--cream)}
+  .family h2{color:#fff0c7}
+  .family p{line-height:1.7;font-style:italic}
+  .center-cta{text-align:center;color:var(--cream)}
+  .center-cta h2{color:#fff0c7}
+  .center-cta p{max-width:760px;margin:0 auto 26px;line-height:1.75}
+  @media(max-width:760px){
+    .section{padding:48px 20px}
+    .triage-grid,.ledger-grid,.author,.download-card,.tree-section,.family{grid-template-columns:1fr}
+    .book-mockup img{max-height:380px}
+    .author-photo{max-width:430px;margin:auto}
+    .bio-strip{grid-template-columns:100px 1fr;gap:18px}
+    .bio-strip img{max-height:150px}
+  }
+</style>
+</head>
+<body>
+<main class="bloodline-page">
+
+  <!-- SECTION 1: BOOK INTRO / HERO -->
+  <section class="section">
+    <div class="inner">
+      <div class="hero-copy">
+         <img src="{% static 'core/images/cellular5.jpeg'%}">
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 2: HOUSE OF CONSTANT TRIAGE -->
+  <section class="section">
+    <div class="inner">
+      <div class="hero-copy">
+         <img src="{% static 'core/images/cellular6.jpeg'%}">
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 3: ROOTS / FIRE OF GOD -->
+  <section class="section">
+    <div class="inner">
+      <div class="hero-copy">
+         <img src="{% static 'core/images/cellular8.jpeg'%}">
+      </div>
+    </div>
+  </section>
+ <section class="section">
+    <div class="inner author">
+      <div>
+        <div class="eyebrow">Meet the Author</div>
+        <h2>Michelle Nicole Benjamin-Layne</h2>
+        <div class="author-name">A Voice for Generational Restoration</div>
+        <p class="author-copy">Michelle Nicole Benjamin-Layne is a visionary force behind Manifest Destiny Ministries International and the architect of the global Matriarch Mantle movement. With decades of ministry service, leadership and community engagement, she is committed to equipping women and families to recognise their influence, confront destructive patterns and build a legacy rooted in faith, purpose and truth.</p>
+        <p class="author-copy">Through teaching, mentorship and spiritual leadership, she calls a generation of women to lead with courage, wisdom and responsibility—at home, in the church and in their communities.</p>
+      </div>
+      <div class="image-placeholder author-photo">
+        <img src="{% static 'core/images/cellular9.jpeg'%}" alt="Portrait of author Michelle Nicole Benjamin-Layne">
+      </div>
+    </div>
+ </section>
+
+  <!-- SECTION 7: END THE CYCLE -->
+  <section class="section">
+    <div class="inner tree-section">
+      <div class="image-placeholder">
+        <img src="{% static 'core/images/cellular10.jpeg'%}" alt="Illustration of a family tree with golden leaves and strong roots">
+      </div>
+      <div>
+        <div class="eyebrow" style="color:#9b6928">CELLULAR EMBASSY</div>
+        <h2>Where Science Illuminates Scripture</h2>
+        <p>A groundbreaking exploration of the divine design within the female body, revealing the connection between biology, the womb, spiritual purpose, and biblical revelation.</p>
+        <p>Through the lenses of Biology, Theology, and Spiritual Warfare, this book invites readers to discover the significance of the female body, the mystery of the carry, and the divine wisdom woven into creation.</p>
+        <p>Discover the revelation. Understand the science. Embrace the purpose.</p>
+        <p><strong>Author: Pastor Michelle Nicole Benjamin-Layne</strong></p>
+      </div>
+    </div>
+  </section>
+
+
+</main>
+
+
+</body></html>
