@@ -7,7 +7,17 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 load_dotenv(BASE_DIR / ".env")
 SECRET_KEY = os.environ.get("SECRET_KEY", "unsafe-development-key")
 DEBUG = os.environ.get("DEBUG", "False").lower() == "true"
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = [
+    "127.0.0.1",
+    "localhost",
+    ".vercel.app",
+    "manifestdestinyministries.org",
+    "www.manifestdestinyministries.org",
+    "marcmind.com",
+]
+ALLOWED_HOSTS += [h.strip() for h in os.environ.get("ALLOWED_HOSTS", "").split(",") if h.strip()]
+if os.environ.get("VERCEL_URL"):
+    ALLOWED_HOSTS.append(os.environ["VERCEL_URL"])
 INSTALLED_APPS = ["django.contrib.admin", "django.contrib.auth", "django.contrib.contenttypes", "django.contrib.sessions", "django.contrib.messages", "django.contrib.staticfiles", "core"]
 MIDDLEWARE = ["django.middleware.security.SecurityMiddleware", "whitenoise.middleware.WhiteNoiseMiddleware", "django.contrib.sessions.middleware.SessionMiddleware", "django.middleware.common.CommonMiddleware", "django.middleware.csrf.CsrfViewMiddleware", "django.contrib.auth.middleware.AuthenticationMiddleware", "django.contrib.messages.middleware.MessageMiddleware", "django.middleware.clickjacking.XFrameOptionsMiddleware"]
 ROOT_URLCONF = "config.urls"
@@ -45,7 +55,12 @@ SITE_URL = os.environ.get(
     "SITE_URL",
     "http://127.0.0.1:8000"
 )
-CSRF_TRUSTED_ORIGINS = ["https://marcmind.com","https://",  "https://*.vercel.app",]
+CSRF_TRUSTED_ORIGINS = [
+    "https://marcmind.com",
+    "https://manifestdestinyministries.org",
+    "https://www.manifestdestinyministries.org",
+    "https://*.vercel.app",
+]
 
 # Database configuration
 DATABASES = {
