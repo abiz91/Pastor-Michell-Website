@@ -70,6 +70,8 @@
     .user-menu a, .user-menu button { display:block; width:100%; padding:9px 5px; border:0; border-top:1px solid rgba(255,255,255,.1); background:none; text-align:left; color:white; text-decoration:none; font:14px var(--sans); cursor:pointer; }
     .user-menu a:hover, .user-menu button:hover { color:var(--gold-light); }
     .mobile-toggle { display:none; margin-left:auto; color:var(--gold-light); background:none; border:1px solid var(--gold); border-radius:8px; padding:8px 12px; font-size:23px; cursor:pointer; }
+    .mobile-toggle span { display:block; width:22px; height:2px; margin:4px 0; background:currentColor; }
+    .mobile-auth { display:none; }
 
     /* WELCOME / HERO */
     .mm-welcome { --mm-gold:#d6ad52; --mm-gold-light:#ffe6a0; position:relative; isolation:isolate; display:flex; align-items:center; width:100%; min-height:690px; padding:65px 5% 85px; overflow:hidden; background:radial-gradient(ellipse at 65% 40%,rgba(122,0,37,.9),transparent 55%),linear-gradient(115deg,#250004,#51000f 48%,#300006); }
@@ -129,7 +131,7 @@
     .card p { color:#655b59; }
     .scripture-box { margin-top:30px; padding:28px; border-left:4px solid var(--gold); background:#f6ead6; color:#49342d; }
     .scripture-box strong { display:block; margin-top:12px; color:#855715; }
-    .pill-list { display:center; flex-wrap:wrap; gap:9px; margin-top:20px; }
+    .pill-list { display:flex; flex-wrap:wrap; gap:9px; margin-top:20px; }
     .pill-list span { padding:7px 13px; border:1px solid #d7bd8c; border-radius:30px; color:#79551d; font-size:12px; }
     .dark-section .pill-list span { color:#ffe6a0; border-color:#9f7836; }
     .founder-card { display:grid; grid-template-columns:.8fr 1.2fr; gap:35px; align-items:center; }
@@ -163,6 +165,9 @@
       .nav-link,.nav-trigger { width:100%; justify-content:space-between; padding:12px; }
       .dropdown { position:static; min-width:0; box-shadow:none; margin:0 0 8px 12px; }
       .auth-area { display:none; }
+      .mobile-auth { display:block; margin-top:6px; border-top:1px solid rgba(214,173,82,.35); }
+      .nav-item:hover > .dropdown, .nav-item:focus-within > .dropdown { display:none; }
+      .nav-item.open > .dropdown { display:block; }
       .mm-welcome-container { grid-template-columns:1fr; }
       .mm-welcome-founder { min-height:420px; max-width:520px; width:100%; margin:auto; }
       .mm-founder-image { height:450px; }
@@ -655,6 +660,39 @@
         }
 
         
+        @media(max-width:900px){
+            .hero{min-height:0}
+            .hero-grid{grid-template-columns:1fr;gap:45px;padding:110px 0 80px}
+            .hero-slideshow{min-height:420px}
+            .hero-badge{right:12px;bottom:-30px;width:100px;height:100px;border-width:6px}
+            .hero-badge img{width:55px;height:55px}
+            .global-values{grid-template-columns:repeat(3,1fr)}
+            .global-value{border-bottom:1px solid var(--line)}
+            .global-value:nth-child(3n){border-right:0}
+            .global-countries,.gallery-grid{grid-template-columns:1fr 1fr}
+            .gallery-large{grid-column:span 2;grid-row:auto}
+            .gallery-large img{min-height:320px}
+        }
+        @media(max-width:600px){
+            .container{width:calc(100% - 32px)}
+            .section{padding:70px 0}
+            .section-meta{flex-direction:column;gap:6px;margin-bottom:40px}
+            h1{font-size:clamp(40px,11vw,58px)}
+            h2{font-size:clamp(34px,9vw,45px)}
+            .hero-slideshow{min-height:340px}
+            .hero-slide figcaption{left:18px;right:18px;bottom:44px}
+            .hero-slide figcaption strong{font-size:20px}
+            .hero-control{width:38px;height:38px;font-size:26px}
+            .hero-prev{left:10px}.hero-next{right:10px}
+            .global-values{grid-template-columns:repeat(2,1fr)}
+            .global-value:nth-child(n){border-right:1px solid var(--line)}
+            .global-value:nth-child(2n){border-right:0}
+            .global-countries,.gallery-grid{grid-template-columns:1fr}
+            .gallery-large{grid-column:auto}
+            .country-image{height:240px}
+            .country-name h3{font-size:30px}
+            .country-content{padding:22px}
+        }
       </style>
 
 
@@ -666,7 +704,7 @@
       <span><strong>MATRIARCH MANTLE</strong><small>PROPHETIC INTERCESSORY PRAYER MINISTRY</small></span>
     </a>
 
-    <button class="mobile-toggle" type="button" aria-label="Open navigation" aria-expanded="false" onclick="toggleMainNav()">☰</button>
+    <button class="mobile-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="mainNav" onclick="toggleMainNav()"><span></span><span></span><span></span></button>
 
     <nav class="main-nav" id="mainNav" aria-label="Main navigation">
       <div class="nav-item"><a class="nav-link active" href="">Home</a></div>
@@ -718,6 +756,16 @@
           <a href="https://www.zeffy.com/en-US/donation-form/matriarch-mantle-global-outreach-initiatives">Partner With Us</a>
           <a href="#contact">Contact</a>
         </div>
+      </div>
+      <div class="nav-item mobile-auth">
+        {% if request.user.is_authenticated %}
+          <form method="post" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button class="nav-link" type="submit">Sign Out</button>
+          </form>
+        {% else %}
+          <a class="nav-link" href="{% url 'login' %}">Sign In</a>
+        {% endif %}
       </div>
     </nav>
 
@@ -1278,10 +1326,34 @@
   window.addEventListener("scroll", updateHeader, { passive: true });
   updateHeader();
 
-  const menuToggle = $("#menuToggle");
+  const menuToggle = $(".mobile-toggle");
   const mainNav = $("#mainNav");
-  menuToggle?.addEventListener("click", () => mainNav?.classList.toggle("open"));
-  $$("#mainNav a").forEach(link => link.addEventListener("click", () => mainNav?.classList.remove("open")));
+  const setNavOpen = open => {
+    mainNav?.classList.toggle("active", open);
+    menuToggle?.setAttribute("aria-expanded", String(open));
+    menuToggle?.setAttribute("aria-label", open ? "Close navigation" : "Open navigation");
+  };
+  window.toggleMainNav = () => setNavOpen(!mainNav?.classList.contains("active"));
+  $$("#mainNav a").forEach(link => link.addEventListener("click", () => setNavOpen(false)));
+
+  // Tap-to-open dropdowns: touch screens have no hover.
+  $$("#mainNav .nav-trigger").forEach(trigger => trigger.addEventListener("click", () => {
+    const item = trigger.closest(".nav-item");
+    const open = !item.classList.contains("open");
+    $$("#mainNav .nav-item.open").forEach(other => {
+      if (other === item) return;
+      other.classList.remove("open");
+      other.querySelector(".nav-trigger")?.setAttribute("aria-expanded", "false");
+    });
+    item.classList.toggle("open", open);
+    trigger.setAttribute("aria-expanded", String(open));
+  }));
+
+  const authArea = $("#authArea");
+  window.toggleUserMenu = () => authArea?.classList.toggle("open");
+  document.addEventListener("click", event => {
+    if (!event.target.closest("#authArea")) authArea?.classList.remove("open");
+  });
 
   const userButton = $("#userButton");
   const userMenu = $("#userMenu");
